@@ -1,15 +1,6 @@
 #pragma once
 
-#include <stack.hpp> 
-#include <iostream>
-#include <cmath>
-#include <algorithm>
-#include <vector>
-#include <string>
-#include <utility>
-#include <fstream>
-#include <filesystem>
-#include <list>
+#include <includes.hpp>
 
 using ullong = unsigned long long;
 
@@ -170,7 +161,7 @@ namespace asd
 		}
 	}
 
-	//--------------------------------------- Сдано 19.09.24
+	//-----------------------------------------------------------------
 
 	void lab7(std::vector<int>& data)
 	{

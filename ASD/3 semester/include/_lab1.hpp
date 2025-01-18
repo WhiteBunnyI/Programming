@@ -1,5 +1,7 @@
 #pragma once
 
+#include <includes.hpp>
+
 namespace asd
 {
 	bool lab1(std::string& str)
