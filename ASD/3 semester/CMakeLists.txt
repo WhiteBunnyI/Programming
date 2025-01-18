@@ -15,8 +15,27 @@ include_directories("include/")		#Добавляем хедеры
 
 # Сказать программе, что должен быть исполняемый файл
 add_executable("${PROJECT_NAME}" main.cpp
-								include/stack.hpp include/labs.hpp
-								include/queue.hpp)
+								include/includes.hpp
+								include/stack.hpp 
+								include/labs.hpp
+								include/queue.hpp
+								include/_lab1.hpp
+								include/_lab2.hpp
+								include/_lab3.hpp
+								include/_lab4.hpp
+								include/_lab5.hpp
+								include/_lab6.hpp
+								include/_lab7.hpp
+								include/_lab8.hpp
+								include/_lab9.hpp
+								include/lab10.hpp
+								include/lab11.hpp
+								include/lab12.hpp
+								include/lab13.hpp
+								include/lab14.hpp
+								include/lab15.hpp
+								include/lab16.hpp
+								include/lab17.hpp)
 
 #Устанавливаем в качестве запускаемого проекта наш проект
 set_property(DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}" PROPERTY VS_STARTUP_PROJECT "${PROJECT_NAME}")

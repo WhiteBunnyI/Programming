@@ -26,6 +26,19 @@ void TestIsArraySorted(std::vector<int>& data)
 	}
 }
 
+void Test2Lab()
+{
+	std::string str = "-20+7*(3/9)-(-5)*(0-1)*(10/0)=";
+	try
+	{
+		asd::lab2(str);
+	}
+	catch (const std::exception& exp)
+	{
+		std::cerr << exp.what() << std::endl;
+	}
+}
+
 void Test12Lab()
 {
 	//Внешняя многофазная
@@ -51,17 +64,14 @@ void Test12Lab()
 	//Внешняя многофазная
 }
 
-void Test2Lab()
+void Test13Lab()
 {
-	std::string str = "-20+7*(3/9)-(-5)*(0-1)*(10/0)=";
-	try
-	{
-		asd::lab2(str);
-	}
-	catch (const std::exception& exp)
-	{
-		std::cerr << exp.what() << std::endl;
-	}
+	asd::lab13("words.txt");
+}
+
+void Test14Lab()
+{
+	asd::lab14("words.txt");
 }
 
 void Test15Lab()
@@ -82,29 +92,21 @@ void Test17Lab()
 	asd::lab17(str);
 }
 
-void Test13Lab()
-{
-	asd::lab13("words.txt");
-}
-
-void Test14Lab()
-{
-	asd::lab14("words.txt");
-}
-
 int main()
 {
 	std::setlocale(LC_ALL, "rus");
 
 	//Test2Lab();
 	//Test12Lab();
+	//Test13Lab();
+	//Test14Lab();
 	//Test15Lab();
 	//Test16Lab();
 	//Test17Lab();
-	//Test13Lab();
 	Test14Lab();
 	return 0;
 	
+	//Сортироки
 	std::vector<int> data1{ 2,4,5,1,10,3,6,8,7,9 };
 	std::vector<int> data2{ 1,2,3,4,5,6,7,8,9,10 };
 	std::vector<int> data3{ 10,9,8,7,6,5,4,3,2,1 };
