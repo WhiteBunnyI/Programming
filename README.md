@@ -41,51 +41,14 @@
 		│	│	└──main.cpp
 		│	├──semester 1:/
 		│	│	├──Task1:/
-		│	│	│	└──Task1.cpp
 		│	│	├──Task2:/
-		│	│	│	└──Task2.cpp
 		│	│	├──Task3:/
-		│	│	│	├──Task3-1.cpp
-		│	│	│	├──Task3-2.cpp
-		│	│	│	└──Task3-3.cpp
 		│	│	├──Task4:/
-		│	│	│	├──Task4-1.cpp
-		│	│	│	└──Task4-2.cpp
 		│	│	├──Task5:/
-		│	│	│	├──Task5-1.cpp
-		│	│	│	├──Task5-2.cpp
-		│	│	│	├──Task5-3.cpp
-		│	│	│	├──Task5-4.cpp
-		│	│	│	└──Task5-5.cpp
 		│	│	├──Task6:/
-		│	│	│	├──input.txt
-		│	│	│	├──Task6-1.cpp
-		│	│	│	├──Task6-2.cpp
-		│	│	│	└──Task6-3.cpp
 		│	│	├──Task7:/
-		│	│	│	└──Task7.cpp
 		│	│	├──Task8:/
-		│	│	│	├──assets:/
-		│	│	│	│	└──input.txt
-		│	│	│	├──inc:/
-		│	│	│	│	├──Functions.h
-		│	│	│	│	└──ListFunctions.h
-		│	│	│	├──src:/
-		│	│	│	│	├──Functions.cpp
-		│	│	│	│	└──ListFunctions.cpp
-		│	│	│	├──CMakeLists.txt
-		│	│	│	└──main.cpp
 		│	│	└──Task9:/
-		│	│	│	├──assets:/
-		│	│	│	│	└──input.txt
-		│	│	│	├──inc:/
-		│	│	│	│	├──Functions.h
-		│	│	│	│	└──ListFunctions.h
-		│	│	│	├──src:/
-		│	│	│	│	├──Functions.cpp
-		│	│	│	│	└──ListFunctions.cpp
-		│	│	│	├──CMakeLists.txt
-		│	│	│	└──main.cpp
 		│	├──semester 2:/
 		│	│	├──Task1:/
 		│	│	├──Task2:/
@@ -96,11 +59,4 @@
 		│	│	├──Task7:/
 		│	│	└──Task8:/
 		│	├──SFML Physics:/
-		│	│	├──bin:/
-		│	│	├──include:/
-		│	│	├──lib:/
-		│	│	├──resources:/
-		│	│	├──src:/
-		│	│	├──CMakeLists.txt
-		│	│	└──main.cpp
 		│	└────────────────────────────────────────────────────────────────────
