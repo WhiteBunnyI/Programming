@@ -1,2 +1,0 @@
-# BoP
-Basics of programming

@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "README.md",
+                "file": "Программирование.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "README"
+              "title": "Программирование"
             }
           }
         ]
@@ -93,7 +93,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "README.md",
+                "file": "Программирование.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -103,7 +103,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Backlinks for README"
+              "title": "Backlinks for Программирование"
             }
           },
           {
@@ -112,12 +112,12 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "README.md",
+                "file": "Программирование.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "Outgoing links from README"
+              "title": "Outgoing links from Программирование"
             }
           },
           {
@@ -139,10 +139,10 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "README.md"
+                "file": "Программирование.md"
               },
               "icon": "lucide-list",
-              "title": "Outline of README"
+              "title": "Outline of Программирование"
             }
           }
         ]
@@ -164,6 +164,17 @@
   },
   "active": "5aac3cb268e76bcb",
   "lastOpenFiles": [
-    "README.md"
+    "ASD/include/lab17.hpp",
+    "ASD/include/lab16.hpp",
+    "ASD/include/lab15.hpp",
+    "ASD/include/lab14.hpp",
+    "ASD/include/lab13.hpp",
+    "ASD/include/lab12.hpp",
+    "ASD/include/lab11.hpp",
+    "ASD/include/lab10.hpp",
+    "ASD/include/lba10.hpp",
+    "ASD/include/lab9.hpp",
+    "ASD/include/lab8.hpp",
+    "Программирование.md"
   ]
 }

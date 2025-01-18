@@ -1,6 +1,6 @@
 #pragma once
 
-#include <stack.hpp>
+#include <stack.hpp> 
 #include <iostream>
 #include <cmath>
 #include <algorithm>
