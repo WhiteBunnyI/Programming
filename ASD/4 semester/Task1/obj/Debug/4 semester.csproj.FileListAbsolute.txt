@@ -1,0 +1,10 @@
+D:\Github\Github\Programming\ASD\4 semester\4 semester\bin\Debug\4 semester.exe.config
+D:\Github\Github\Programming\ASD\4 semester\4 semester\bin\Debug\4 semester.exe
+D:\Github\Github\Programming\ASD\4 semester\4 semester\bin\Debug\4 semester.pdb
+D:\Github\Github\Programming\ASD\4 semester\4 semester\obj\Debug\4 semester.csproj.AssemblyReference.cache
+D:\Github\Github\Programming\ASD\4 semester\4 semester\obj\Debug\_4_semester.Form1.resources
+D:\Github\Github\Programming\ASD\4 semester\4 semester\obj\Debug\_4_semester.Properties.Resources.resources
+D:\Github\Github\Programming\ASD\4 semester\4 semester\obj\Debug\4 semester.csproj.GenerateResource.cache
+D:\Github\Github\Programming\ASD\4 semester\4 semester\obj\Debug\4 semester.csproj.CoreCompileInputs.cache
+D:\Github\Github\Programming\ASD\4 semester\4 semester\obj\Debug\4 semester.exe
+D:\Github\Github\Programming\ASD\4 semester\4 semester\obj\Debug\4 semester.pdb
