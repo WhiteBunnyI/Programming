@@ -18,6 +18,13 @@ namespace asd
             vector.y /= vecLen;
 
         }
+        
+        public float F(float x)
+        {
+/*            if(vector.x == 0)
+                return */
+            return (x - startPos.x) * vector.y / vector.x + startPos.y;
+        }
 
         public void Copy(Straight other)
         {
@@ -29,7 +36,6 @@ namespace asd
 
         public override void Render(Form1 form)
         {
-            
             if (vector.x == 0)
             {
                 form.g.DrawLine(form.pen, startPos.x, -form.Size.Height, startPos.x, form.Size.Height * 2);
