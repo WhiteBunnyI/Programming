@@ -8,3 +8,13 @@ D:\Github\Github\Programming\ASD\4 semester\Task2\bin\Debug\Task2.pdb
 D:\Github\Github\Programming\ASD\4 semester\Task2\obj\Debug\Task2.exe
 D:\Github\Github\Programming\ASD\4 semester\Task2\obj\Debug\Task2.pdb
 D:\Github\Github\Programming\ASD\4 semester\Task2\obj\Debug\asd.Properties.Resources.resources
+C:\Users\user\Documents\GitHub\Programming\ASD\4 semester\Task2\bin\Debug\Task2.exe.config
+C:\Users\user\Documents\GitHub\Programming\ASD\4 semester\Task2\bin\Debug\Task2.exe
+C:\Users\user\Documents\GitHub\Programming\ASD\4 semester\Task2\bin\Debug\Task2.pdb
+C:\Users\user\Documents\GitHub\Programming\ASD\4 semester\Task2\obj\Debug\Task2.csproj.AssemblyReference.cache
+C:\Users\user\Documents\GitHub\Programming\ASD\4 semester\Task2\obj\Debug\asd.Form1.resources
+C:\Users\user\Documents\GitHub\Programming\ASD\4 semester\Task2\obj\Debug\asd.Properties.Resources.resources
+C:\Users\user\Documents\GitHub\Programming\ASD\4 semester\Task2\obj\Debug\Task2.csproj.GenerateResource.cache
+C:\Users\user\Documents\GitHub\Programming\ASD\4 semester\Task2\obj\Debug\Task2.csproj.CoreCompileInputs.cache
+C:\Users\user\Documents\GitHub\Programming\ASD\4 semester\Task2\obj\Debug\Task2.exe
+C:\Users\user\Documents\GitHub\Programming\ASD\4 semester\Task2\obj\Debug\Task2.pdb
