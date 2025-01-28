@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -18,12 +19,34 @@ namespace asd
             vector.y /= vecLen;
 
         }
-        
-        public float F(float x)
+
+        public override float F(float x)
         {
-/*            if(vector.x == 0)
-                return */
+            if(vector.x == 0f) return startPos.y;
+
             return (x - startPos.x) * vector.y / vector.x + startPos.y;
+        }
+
+        public override List<Dot> CheckCollide(Dot other)
+        {
+            List<Dot> result = new List<Dot>(8);
+
+            switch(other.GetType().Name)
+            {
+                case "Dot":
+                    break;
+                case "Straight":
+                    Program.CheckCollide(this, other as Straight, ref result);
+                    break;
+                case "Segment":
+                    Program.CheckCollide(this, other as Segment, ref result);
+                    break;
+                case "Circle":
+                    Program.CheckCollide(this, other as Circle, ref result);
+                    break;
+            }
+
+            return result;
         }
 
         public void Copy(Straight other)

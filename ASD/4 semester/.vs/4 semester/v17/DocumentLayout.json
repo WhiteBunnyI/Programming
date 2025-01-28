@@ -3,24 +3,32 @@
   "WorkspaceRootPath": "D:\\Github\\Github\\Programming\\ASD\\4 semester\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{54A98D67-ACDA-4B70-9D73-EE6831C407AE}|Test\\Test.csproj|d:\\github\\github\\programming\\asd\\4 semester\\test\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{54A98D67-ACDA-4B70-9D73-EE6831C407AE}|Test\\Test.csproj|solutionrelative:test\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{3D4A456C-BCA9-4017-AC30-707AF977050D}|Task2\\Task2.csproj|d:\\github\\github\\programming\\asd\\4 semester\\task2\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{3D4A456C-BCA9-4017-AC30-707AF977050D}|Task2\\Task2.csproj|solutionrelative:task2\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{3D4A456C-BCA9-4017-AC30-707AF977050D}|Task2\\Task2.csproj|d:\\github\\github\\programming\\asd\\4 semester\\task2\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3D4A456C-BCA9-4017-AC30-707AF977050D}|Task2\\Task2.csproj|solutionrelative:task2\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3D4A456C-BCA9-4017-AC30-707AF977050D}|Task2\\Task2.csproj|d:\\github\\github\\programming\\asd\\4 semester\\task2\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{3D4A456C-BCA9-4017-AC30-707AF977050D}|Task2\\Task2.csproj|solutionrelative:task2\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3D4A456C-BCA9-4017-AC30-707AF977050D}|Task2\\Task2.csproj|d:\\github\\github\\programming\\asd\\4 semester\\task2\\straight.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{3D4A456C-BCA9-4017-AC30-707AF977050D}|Task2\\Task2.csproj|D:\\Github\\Github\\Programming\\ASD\\4 semester\\task2\\straight.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{3D4A456C-BCA9-4017-AC30-707AF977050D}|Task2\\Task2.csproj|solutionrelative:task2\\straight.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{3D4A456C-BCA9-4017-AC30-707AF977050D}|Task2\\Task2.csproj|d:\\github\\github\\programming\\asd\\4 semester\\task2\\dot.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{3D4A456C-BCA9-4017-AC30-707AF977050D}|Task2\\Task2.csproj|D:\\Github\\Github\\Programming\\ASD\\4 semester\\task2\\circle.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3D4A456C-BCA9-4017-AC30-707AF977050D}|Task2\\Task2.csproj|solutionrelative:task2\\circle.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3D4A456C-BCA9-4017-AC30-707AF977050D}|Task2\\Task2.csproj|D:\\Github\\Github\\Programming\\ASD\\4 semester\\task2\\dot.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{3D4A456C-BCA9-4017-AC30-707AF977050D}|Task2\\Task2.csproj|solutionrelative:task2\\dot.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3D4A456C-BCA9-4017-AC30-707AF977050D}|Task2\\Task2.csproj|D:\\Github\\Github\\Programming\\ASD\\4 semester\\task2\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{3D4A456C-BCA9-4017-AC30-707AF977050D}|Task2\\Task2.csproj|solutionrelative:task2\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3D4A456C-BCA9-4017-AC30-707AF977050D}|Task2\\Task2.csproj|D:\\Github\\Github\\Programming\\ASD\\4 semester\\task2\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3D4A456C-BCA9-4017-AC30-707AF977050D}|Task2\\Task2.csproj|solutionrelative:task2\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -30,33 +38,57 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "Straight.cs",
-              "DocumentMoniker": "D:\\Github\\Github\\Programming\\ASD\\4 semester\\Task2\\Straight.cs",
-              "RelativeDocumentMoniker": "Task2\\Straight.cs",
-              "ToolTip": "D:\\Github\\Github\\Programming\\ASD\\4 semester\\Task2\\Straight.cs",
-              "RelativeToolTip": "Task2\\Straight.cs",
-              "ViewState": "AgIAADUAAAAAAAAAAAAwwDIAAAApAAAAAAAAAA==",
+              "DocumentIndex": 0,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\Github\\Github\\Programming\\ASD\\4 semester\\Test\\Program.cs",
+              "RelativeDocumentMoniker": "Test\\Program.cs",
+              "ToolTip": "D:\\Github\\Github\\Programming\\ASD\\4 semester\\Test\\Program.cs",
+              "RelativeToolTip": "Test\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAARAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-20T19:27:41.224Z",
+              "WhenOpened": "2025-01-28T16:48:44.599Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "Program.cs",
               "DocumentMoniker": "D:\\Github\\Github\\Programming\\ASD\\4 semester\\Task2\\Program.cs",
               "RelativeDocumentMoniker": "Task2\\Program.cs",
               "ToolTip": "D:\\Github\\Github\\Programming\\ASD\\4 semester\\Task2\\Program.cs",
               "RelativeToolTip": "Task2\\Program.cs",
-              "ViewState": "AgIAAAwAAAAAAAAAAAAowBsAAAAXAAAAAAAAAA==",
+              "ViewState": "AgIAACoAAAAAAAAAAAAawDQAAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-20T19:53:07.026Z",
+              "WhenOpened": "2025-01-25T13:42:28.115Z",
               "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Circle.cs",
+              "DocumentMoniker": "D:\\Github\\Github\\Programming\\ASD\\4 semester\\Task2\\Circle.cs",
+              "RelativeDocumentMoniker": "Task2\\Circle.cs",
+              "ToolTip": "D:\\Github\\Github\\Programming\\ASD\\4 semester\\Task2\\Circle.cs",
+              "RelativeToolTip": "Task2\\Circle.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAABUAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-25T13:08:20.131Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Straight.cs",
+              "DocumentMoniker": "D:\\Github\\Github\\Programming\\ASD\\4 semester\\Task2\\Straight.cs",
+              "RelativeDocumentMoniker": "Task2\\Straight.cs",
+              "ToolTip": "D:\\Github\\Github\\Programming\\ASD\\4 semester\\Task2\\Straight.cs",
+              "RelativeToolTip": "Task2\\Straight.cs",
+              "ViewState": "AgIAAAoAAAAAAAAAAAA1wBYAAAAoAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-20T19:27:41.224Z"
             },
             {
               "$type": "Document",
@@ -66,35 +98,32 @@
               "RelativeDocumentMoniker": "Task2\\Dot.cs",
               "ToolTip": "D:\\Github\\Github\\Programming\\ASD\\4 semester\\Task2\\Dot.cs",
               "RelativeToolTip": "Task2\\Dot.cs",
-              "ViewState": "AgIAAAEAAAAAAAAAAIAwwA8AAAAJAAAAAAAAAA==",
+              "ViewState": "AgIAAAEAAAAAAAAAAAApwBMAAAAWAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-20T19:43:07.49Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-20T19:43:07.49Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 5,
               "Title": "Form1.cs [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]",
               "DocumentMoniker": "D:\\Github\\Github\\Programming\\ASD\\4 semester\\Task2\\Form1.cs",
               "RelativeDocumentMoniker": "Task2\\Form1.cs",
               "ToolTip": "D:\\Github\\Github\\Programming\\ASD\\4 semester\\Task2\\Form1.cs [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]",
               "RelativeToolTip": "Task2\\Form1.cs [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-20T19:27:22.48Z",
-              "EditorCaption": " [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]"
+              "WhenOpened": "2025-01-20T19:27:22.48Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 6,
               "Title": "Form1.cs",
               "DocumentMoniker": "D:\\Github\\Github\\Programming\\ASD\\4 semester\\Task2\\Form1.cs",
               "RelativeDocumentMoniker": "Task2\\Form1.cs",
               "ToolTip": "D:\\Github\\Github\\Programming\\ASD\\4 semester\\Task2\\Form1.cs",
               "RelativeToolTip": "Task2\\Form1.cs",
-              "ViewState": "AgIAACEAAAAAAAAAAAAgwFcAAAAWAAAAAAAAAA==",
+              "ViewState": "AgIAAFEAAAAAAAAAAAAzwF4AAAAVAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-20T19:27:21.409Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-20T19:27:21.409Z"
             }
           ]
         }

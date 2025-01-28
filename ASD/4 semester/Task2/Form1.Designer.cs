@@ -37,6 +37,7 @@
             this.windowResTextBox = new System.Windows.Forms.TextBox();
             this.type = new System.Windows.Forms.ComboBox();
             this.menuStrip = new System.Windows.Forms.MenuStrip();
+            this.mouseText = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.points)).BeginInit();
             this.panel.SuspendLayout();
@@ -74,6 +75,7 @@
             // 
             resources.ApplyResources(this.panel, "panel");
             this.panel.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.panel.Controls.Add(this.mouseText);
             this.panel.Controls.Add(this.windowResTextBox);
             this.panel.Controls.Add(this.calculate);
             this.panel.Controls.Add(this.pointsText);
@@ -93,8 +95,7 @@
             this.type.Items.AddRange(new object[] {
             resources.GetString("type.Items"),
             resources.GetString("type.Items1"),
-            resources.GetString("type.Items2"),
-            resources.GetString("type.Items3")});
+            resources.GetString("type.Items2")});
             resources.ApplyResources(this.type, "type");
             this.type.Name = "type";
             this.type.SelectedIndexChanged += new System.EventHandler(this.type_SelectedIndexChanged);
@@ -104,6 +105,12 @@
             // 
             resources.ApplyResources(this.menuStrip, "menuStrip");
             this.menuStrip.Name = "menuStrip";
+            // 
+            // mouseText
+            // 
+            resources.ApplyResources(this.mouseText, "mouseText");
+            this.mouseText.Name = "mouseText";
+            this.mouseText.ReadOnly = true;
             // 
             // Form1
             // 
@@ -135,6 +142,7 @@
         private System.Windows.Forms.TextBox windowResTextBox;
         private System.Windows.Forms.MenuStrip menuStrip;
         private System.Windows.Forms.ComboBox type;
+        private System.Windows.Forms.TextBox mouseText;
     }
 }
 

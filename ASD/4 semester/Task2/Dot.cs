@@ -17,6 +17,16 @@ namespace asd
             startPos = new Vector2(x, y);
         }
 
+        public virtual float F(float x)
+        {
+            throw new NotImplementedException();
+        }
+
+        public virtual List<Dot> CheckCollide(Dot other)
+        {
+            throw new NotImplementedException();
+        }
+
         public virtual void Render(Form1 form)
         {
             form.g.DrawEllipse(form.pen, startPos.x - form.pen.Width / 2, startPos.y - form.pen.Width / 2, form.pen.Width, form.pen.Width);
@@ -49,5 +59,6 @@ namespace asd
         {
             isDragging = false;
         }
+
     }
 }
