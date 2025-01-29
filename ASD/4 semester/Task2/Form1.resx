@@ -141,7 +141,7 @@
     <value>1</value>
   </data>
   <data name="points.Location" type="System.Drawing.Point, System.Drawing">
-    <value>149, 58</value>
+    <value>149, 84</value>
   </data>
   <data name="points.Size" type="System.Drawing.Size, System.Drawing">
     <value>54, 20</value>
@@ -159,10 +159,10 @@
     <value>panel</value>
   </data>
   <data name="&gt;&gt;points.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>4</value>
   </data>
   <data name="pointsText.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 58</value>
+    <value>3, 84</value>
   </data>
   <data name="pointsText.Size" type="System.Drawing.Size, System.Drawing">
     <value>140, 20</value>
@@ -183,10 +183,10 @@
     <value>panel</value>
   </data>
   <data name="&gt;&gt;pointsText.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="calculate.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 29</value>
+    <value>3, 55</value>
   </data>
   <data name="calculate.Size" type="System.Drawing.Size, System.Drawing">
     <value>200, 23</value>
@@ -207,7 +207,7 @@
     <value>panel</value>
   </data>
   <data name="&gt;&gt;calculate.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="panel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
@@ -216,8 +216,29 @@
   <data name="panel.AutoScroll" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="windowResTextBox.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="mouseText.Location" type="System.Drawing.Point, System.Drawing">
     <value>3, 3</value>
+  </data>
+  <data name="mouseText.Size" type="System.Drawing.Size, System.Drawing">
+    <value>200, 20</value>
+  </data>
+  <data name="mouseText.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
+  <data name="&gt;&gt;mouseText.Name" xml:space="preserve">
+    <value>mouseText</value>
+  </data>
+  <data name="&gt;&gt;mouseText.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mouseText.Parent" xml:space="preserve">
+    <value>panel</value>
+  </data>
+  <data name="&gt;&gt;mouseText.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="windowResTextBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 29</value>
   </data>
   <data name="windowResTextBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>200, 20</value>
@@ -235,22 +256,19 @@
     <value>panel</value>
   </data>
   <data name="&gt;&gt;windowResTextBox.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>1</value>
   </data>
   <data name="type.Items" xml:space="preserve">
-    <value>Точка</value>
-  </data>
-  <data name="type.Items1" xml:space="preserve">
     <value>Прямая</value>
   </data>
-  <data name="type.Items2" xml:space="preserve">
+  <data name="type.Items1" xml:space="preserve">
     <value>Отрезок</value>
   </data>
-  <data name="type.Items3" xml:space="preserve">
+  <data name="type.Items2" xml:space="preserve">
     <value>Окружность</value>
   </data>
   <data name="type.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 84</value>
+    <value>3, 110</value>
   </data>
   <data name="type.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
     <value>Yes</value>
@@ -271,7 +289,7 @@
     <value>panel</value>
   </data>
   <data name="&gt;&gt;type.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>5</value>
   </data>
   <data name="panel.Location" type="System.Drawing.Point, System.Drawing">
     <value>553, 12</value>

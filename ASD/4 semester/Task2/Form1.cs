@@ -81,13 +81,22 @@ namespace asd
 
         private void calculate_Click(object sender, EventArgs e)
         {
+            Render(false);
+            Color prev = pen.Color;
+            pen.Color = Color.Firebrick;
             for(int i = 0; i < figures.Count; i++)
             {
-                for(int o = 0; o < figures.Count; o++)
+                for(int o = i + 1; o < figures.Count; o++)
                 {
-                    //if(Program.IsCollide())
+                    var collide = figures[i].CheckCollide(figures[o]);
+                    foreach(var dot in collide)
+                    {
+                        dot.Render(this);
+                    }
                 }
             }
+            pen.Color = prev;
+            pictureBox1.Image = bitmap;
         }
 
         private void Render(bool setBitmap = true)
@@ -131,6 +140,7 @@ namespace asd
                 figure?.OnLeftClickDrag(this, e);
             }
             Render();
+            mouseText.Text = "Позиция мыши: " + e.X + " " + e.Y;
         }
 
         private void pictureBox1_MouseUp(object sender, MouseEventArgs e)

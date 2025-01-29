@@ -19,62 +19,87 @@ namespace asd
             Application.Run(new Form1());
         }
 
-/*        public static bool IsCollide(Dot figure1,  Dot figure2, ref Straight crossing)
+        public static void CheckCollide(Straight straight1, Straight straight2, ref List<Dot> result)
         {
-            string t1 = figure1.GetType().Name;
-            string t2 = figure2.GetType().Name;
-            switch (t1)
-            {
-                case "Dot":
-                    break;
-                case "Straight":
-                    break;
-                case "Segment":
-                    break;
-                case "Circle":
-                    break;
-            }
-            return false;
-        }*/
+            float c1 = straight1.startPos.x * straight1.vector.y - straight1.startPos.y * straight1.vector.x;
+            float c2 = straight2.startPos.x * straight2.vector.y - straight2.startPos.y * straight2.vector.x;
 
-        public static bool IsCollide(Straight straight1, Straight straight2, ref Straight crossing)
-        {
-            crossing = new Straight(-10, -10, 0, 0);
-            //Параллельны
-            if(straight1.vector == straight2.vector || straight1.vector == -straight2.vector)
+            //Параллельны 
+            if (straight1.vector.x * straight2.vector.y == straight1.vector.y * straight2.vector.x)
             {
-                //Лежат на одной прямой
-                if(straight1.F(straight1.startPos.x) == straight2.F(straight1.startPos.x) &&
-                    straight1.F(straight2.startPos.x) == straight2.F(straight2.startPos.x))
+                //Параллельны
+                if ((c1 * straight2.vector.y - c2 * straight1.vector.y != 0) || (c1 * straight2.vector.x - c2 * straight1.vector.x != 0))
                 {
-                    crossing.Copy(straight1);
-                    return true;
+
+                    return;
                 }
-
-                return false;
+                //Лежат на одной прямой
+                result.Add(straight1);
+                return;
             }
+            Dot crossing = new Dot(0, 0);
 
-            //x==0 y==0
 
-            //Пересекаются
-            float k = straight1.vector.y / straight1.vector.x;
-            crossing.startPos.y = (straight2.startPos.x - straight1.startPos.x) * k + straight1.startPos.y;
-            crossing.startPos.x = (crossing.startPos.y - straight1.startPos.y) / k + straight1.startPos.x;
+            crossing.startPos.x = (c1 * straight2.vector.x - c2 * straight1.vector.x) / 
+                (straight1.vector.y * straight2.vector.x - straight2.vector.y * straight1.vector.x);
 
-            return true;
+            crossing.startPos.y = straight1.F(crossing.startPos.x);
+
+            result.Add(crossing);
         }
 
-        public static bool IsCollide(Straight straight, Circle circle, ref Straight crossing)
+        public static void CheckCollide(Straight straight, Circle circle, ref List<Dot> result)
         {
-            crossing = new Straight(-10, -10, 0, 0);
-            
+            float c = straight.startPos.x * straight.vector.y - straight.startPos.y * straight.vector.x;
+            float d = Math.Abs((straight.vector.x * circle.startPos.x - straight.vector.y * circle.startPos.y + c)) / 
+                (float)Math.Sqrt(straight.vector.x * straight.vector.x + straight.vector.y * straight.vector.y);
+
+            //Расстояние до прямой больше радиуса => прямая не пересекает окружность
+            if (circle.radius < d)
+                return;
 
 
-            return true;
+            //Прямая пересекает окружность
+            float num1 = straight.vector.x * straight.vector.x;
+            float num2 = 2 * circle.startPos.x * num1 + 2 * straight.vector.y * c - 2 * straight.vector.x * straight.vector.y * circle.startPos.y;
+            float num3 = circle.startPos.x * circle.startPos.x + circle.startPos.y * circle.startPos.y - circle.radius * circle.radius;
+            d = (float)Math.Sqrt(num2 * num2 - 4 * (c * c + 2 * c * straight.vector.x * circle.startPos.y + num1 * num3));
+            Dot dot = new Dot((num2 + d) / 2, 0);
+            dot.startPos.y = straight.F(dot.startPos.x);
+            result.Add(dot);
+            dot = new Dot((num2 - d) / 2, 0);
+            dot.startPos.y = straight.F(dot.startPos.x);
+            result.Add(dot);
         }
-        public static bool IsCollide(Circle circle, Straight straight, ref Straight crossing)
+
+        public static void CheckCollide(Straight straight, Segment segment, ref List<Dot> result)
         {
-            return IsCollide(straight, circle, ref crossing);
+
+        }
+
+        public static void CheckCollide(Segment segment, Circle circle, ref List<Dot> result)
+        {
+
+        }
+
+        public static void CheckCollide(Circle circle1, Circle circle2, ref List<Dot> result)
+        {
+
+        }
+
+        public static void CheckCollide(Circle circle, Straight straight, ref List<Dot> result)
+        {
+            CheckCollide(straight, circle, ref result);
+        }
+
+        public static void CheckCollide(Segment segment, Straight straight, ref List<Dot> result)
+        {
+            CheckCollide(straight, segment, ref result);
+        }
+
+        public static void CheckCollide(Circle circle, Segment segment, ref List<Dot> result)
+        {
+            CheckCollide(segment, circle, ref result);
         }
     }
 }

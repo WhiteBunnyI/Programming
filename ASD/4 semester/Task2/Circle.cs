@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -6,16 +7,38 @@ namespace asd
 {
     public class Circle : Dot
     {
-        float radius;
+        public float radius;
 
         public Circle(float x, float y, float radius) : base(x, y)
         {
             this.radius = radius;
         }
 
+        public override List<Dot> CheckCollide(Dot other)
+        {
+            List<Dot> result = new List<Dot>(8);
+
+            switch (other.GetType().Name)
+            {
+                case "Dot":
+                    break;
+                case "Straight":
+                    Program.CheckCollide(this, other as Straight, ref result);
+                    break;
+                case "Segment":
+                    Program.CheckCollide(this, other as Segment, ref result);
+                    break;
+                case "Circle":
+                    Program.CheckCollide(this, other as Circle, ref result);
+                    break;
+            }
+
+            return result;
+        }
+
         public override void Render(Form1 form)
         {
-            form.g.DrawEllipse(form.pen, startPos.x - radius / 4, startPos.y - radius / 4, radius / 2, radius / 2);
+            form.g.DrawEllipse(form.pen, startPos.x - radius, startPos.y - radius, radius * 2, radius * 2);
             
             Color c = form.pen.Color;
             form.pen.Color = Color.Aqua;
@@ -29,10 +52,10 @@ namespace asd
         public override void OnLeftClickDown(Form1 form, MouseEventArgs e)
         {
             base.OnLeftClickDown(form, e);
-            float x = e.X - startPos.x + radius / 4;
-            float y = e.Y - startPos.y + radius / 4;
+            float x = e.X - startPos.x;
+            float y = e.Y - startPos.y;
             float dist = (float)Math.Sqrt(x * x + y * y);
-            if (dist > radius / 2 - form.pen.Width * 2 && dist < radius / 2 + form.pen.Width * 2)
+            if(dist > radius - form.pen.Width && dist < radius + form.pen.Width)
             {
                 isDraggingRad = true;
             }
@@ -43,8 +66,8 @@ namespace asd
             base.OnLeftClickDrag(form, e);
             if(isDraggingRad)
             {
-                float x = e.X - startPos.x + radius / 4;
-                float y = e.Y - startPos.y + radius / 4;
+                float x = e.X - startPos.x;
+                float y = e.Y - startPos.y;
                 radius = (float)Math.Sqrt(x * x + y * y);
             }
         }
