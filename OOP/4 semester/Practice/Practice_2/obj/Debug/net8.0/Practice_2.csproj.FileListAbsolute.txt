@@ -1,0 +1,15 @@
+C:\Users\user\Documents\GitHub\Programming\OOP\4 semester\Practice\Practice_2\bin\Debug\net8.0\Practice_2.exe
+C:\Users\user\Documents\GitHub\Programming\OOP\4 semester\Practice\Practice_2\bin\Debug\net8.0\Practice_2.deps.json
+C:\Users\user\Documents\GitHub\Programming\OOP\4 semester\Practice\Practice_2\bin\Debug\net8.0\Practice_2.runtimeconfig.json
+C:\Users\user\Documents\GitHub\Programming\OOP\4 semester\Practice\Practice_2\bin\Debug\net8.0\Practice_2.dll
+C:\Users\user\Documents\GitHub\Programming\OOP\4 semester\Practice\Practice_2\bin\Debug\net8.0\Practice_2.pdb
+C:\Users\user\Documents\GitHub\Programming\OOP\4 semester\Practice\Practice_2\obj\Debug\net8.0\Practice_2.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\user\Documents\GitHub\Programming\OOP\4 semester\Practice\Practice_2\obj\Debug\net8.0\Practice_2.AssemblyInfoInputs.cache
+C:\Users\user\Documents\GitHub\Programming\OOP\4 semester\Practice\Practice_2\obj\Debug\net8.0\Practice_2.AssemblyInfo.cs
+C:\Users\user\Documents\GitHub\Programming\OOP\4 semester\Practice\Practice_2\obj\Debug\net8.0\Practice_2.csproj.CoreCompileInputs.cache
+C:\Users\user\Documents\GitHub\Programming\OOP\4 semester\Practice\Practice_2\obj\Debug\net8.0\Practice_2.sourcelink.json
+C:\Users\user\Documents\GitHub\Programming\OOP\4 semester\Practice\Practice_2\obj\Debug\net8.0\Practice_2.dll
+C:\Users\user\Documents\GitHub\Programming\OOP\4 semester\Practice\Practice_2\obj\Debug\net8.0\refint\Practice_2.dll
+C:\Users\user\Documents\GitHub\Programming\OOP\4 semester\Practice\Practice_2\obj\Debug\net8.0\Practice_2.pdb
+C:\Users\user\Documents\GitHub\Programming\OOP\4 semester\Practice\Practice_2\obj\Debug\net8.0\Practice_2.genruntimeconfig.cache
+C:\Users\user\Documents\GitHub\Programming\OOP\4 semester\Practice\Practice_2\obj\Debug\net8.0\ref\Practice_2.dll

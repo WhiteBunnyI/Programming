@@ -21,8 +21,8 @@ namespace asd
 
         public static void CheckCollide(Straight straight1, Straight straight2, ref List<Dot> result)
         {
-            float c1 = straight1.startPos.x * straight1.vector.y - straight1.startPos.y * straight1.vector.x;
-            float c2 = straight2.startPos.x * straight2.vector.y - straight2.startPos.y * straight2.vector.x;
+            float c1 = straight1.startPoint.x * straight1.vector.y - straight1.startPoint.y * straight1.vector.x;
+            float c2 = straight2.startPoint.x * straight2.vector.y - straight2.startPoint.y * straight2.vector.x;
 
             //Параллельны 
             if (straight1.vector.x * straight2.vector.y == straight1.vector.y * straight2.vector.x)
@@ -40,44 +40,80 @@ namespace asd
             Dot crossing = new Dot(0, 0);
 
 
-            crossing.startPos.x = (c1 * straight2.vector.x - c2 * straight1.vector.x) / 
+            crossing.startPoint.x = (c1 * straight2.vector.x - c2 * straight1.vector.x) / 
                 (straight1.vector.y * straight2.vector.x - straight2.vector.y * straight1.vector.x);
 
-            crossing.startPos.y = straight1.F(crossing.startPos.x);
+            if (straight1.vector.x != 0)
+                crossing.startPoint.y = straight1.F(crossing.startPoint.x);
+            else
+                crossing.startPoint.y = straight2.F(crossing.startPoint.x);
 
             result.Add(crossing);
         }
 
         public static void CheckCollide(Straight straight, Circle circle, ref List<Dot> result)
         {
-            float c = straight.startPos.x * straight.vector.y - straight.startPos.y * straight.vector.x;
-            float d = Math.Abs((straight.vector.x * circle.startPos.x - straight.vector.y * circle.startPos.y + c)) / 
-                (float)Math.Sqrt(straight.vector.x * straight.vector.x + straight.vector.y * straight.vector.y);
+            float dx = (straight.startPoint.x - circle.startPoint.x);
+            float dy = (straight.startPoint.y - circle.startPoint.y);
+            float B = 2 * (straight.vector.x * dx + straight.vector.y * dy);
+            float C = dx * dx + dy * dy - circle.radius * circle.radius;
 
-            //Расстояние до прямой больше радиуса => прямая не пересекает окружность
-            if (circle.radius < d)
-                return;
+            float D = (float)Math.Sqrt(B * B - 4 * C);
+            float t1 = (-B + D) / 2f;
+            float t2 = (-B - D) / 2f;
 
+            Dot dot1 = new Dot(0,0);
+            dot1.startPoint.x = straight.startPoint.x + t1 * straight.vector.x;
+            dot1.startPoint.y = straight.startPoint.y + t1 * straight.vector.y;
+            result.Add(dot1);
 
-            //Прямая пересекает окружность
-            float num1 = straight.vector.x * straight.vector.x;
-            float num2 = 2 * circle.startPos.x * num1 + 2 * straight.vector.y * c - 2 * straight.vector.x * straight.vector.y * circle.startPos.y;
-            float num3 = circle.startPos.x * circle.startPos.x + circle.startPos.y * circle.startPos.y - circle.radius * circle.radius;
-            d = (float)Math.Sqrt(num2 * num2 - 4 * (c * c + 2 * c * straight.vector.x * circle.startPos.y + num1 * num3));
-            Dot dot = new Dot((num2 + d) / 2, 0);
-            dot.startPos.y = straight.F(dot.startPos.x);
-            result.Add(dot);
-            dot = new Dot((num2 - d) / 2, 0);
-            dot.startPos.y = straight.F(dot.startPos.x);
-            result.Add(dot);
+            Dot dot2 = new Dot(0, 0);
+            dot2.startPoint.x = straight.startPoint.x + t2 * straight.vector.x;
+            dot2.startPoint.y = straight.startPoint.y + t2 * straight.vector.y;
+            result.Add(dot2);
         }
 
         public static void CheckCollide(Straight straight, Segment segment, ref List<Dot> result)
         {
-
+            float y1 = straight.F(segment.startPoint.x);
+            float y2 = straight.F(segment.endPoint.x);
+            float vecx = segment.endPoint.x - segment.startPoint.x;
+            float vecy = segment.endPoint.y - segment.startPoint.y;
+            Straight straight1 = new Straight(segment.startPoint.x, segment.startPoint.y, vecx, vecy);
+            if (straight.vector.x == 0)
+            {
+                if((straight.startPoint.x > segment.startPoint.x && straight.startPoint.x < segment.endPoint.x) ||
+                    (straight.startPoint.x > segment.endPoint.x && straight.startPoint.x < segment.startPoint.x))
+                {
+                    CheckCollide(straight, straight1, ref result);
+                }
+            }
+            else if((y1 < segment.startPoint.y && y2 > segment.endPoint.y) ||
+                (y1 > segment.startPoint.y && y2 < segment.endPoint.y))
+            {
+                CheckCollide(straight, straight1, ref result);
+            }
         }
 
         public static void CheckCollide(Segment segment, Circle circle, ref List<Dot> result)
+        {
+            float vecx = segment.endPoint.x - segment.startPoint.x;
+            float vecy = segment.endPoint.y - segment.startPoint.y;
+            Straight straight = new Straight(segment.startPoint.x, segment.startPoint.y, vecx, vecy);
+            
+            CheckCollide(straight, circle, ref result);
+            for(int i = 0; i < result.Count; i++)
+            {
+                if ((result[i].startPoint.x < segment.startPoint.x && result[i].startPoint.x < segment.endPoint.x) ||
+                    (result[i].startPoint.x > segment.startPoint.x && result[i].startPoint.x > segment.endPoint.x))
+                {
+                    result.RemoveAt(i);
+                    i--;
+                }
+            }
+        }
+
+        public static void CheckCollide(Segment segment1, Segment segment2, ref List<Dot> result)
         {
 
         }
@@ -92,14 +128,14 @@ namespace asd
             CheckCollide(straight, circle, ref result);
         }
 
-        public static void CheckCollide(Segment segment, Straight straight, ref List<Dot> result)
-        {
-            CheckCollide(straight, segment, ref result);
-        }
-
         public static void CheckCollide(Circle circle, Segment segment, ref List<Dot> result)
         {
             CheckCollide(segment, circle, ref result);
+        }
+
+        public static void CheckCollide(Segment segment, Straight straight, ref List<Dot> result)
+        {
+            CheckCollide(straight, segment, ref result);
         }
     }
 }

@@ -38,12 +38,12 @@ namespace asd
 
         public override void Render(Form1 form)
         {
-            form.g.DrawEllipse(form.pen, startPos.x - radius, startPos.y - radius, radius * 2, radius * 2);
+            form.g.DrawEllipse(form.pen, startPoint.x - radius, startPoint.y - radius, radius * 2, radius * 2);
             
             Color c = form.pen.Color;
             form.pen.Color = Color.Aqua;
 
-            form.g.DrawEllipse(form.pen, startPos.x - form.pen.Width / 2, startPos.y - form.pen.Width, form.pen.Width, form.pen.Width);
+            form.g.DrawEllipse(form.pen, startPoint.x - form.pen.Width / 2, startPoint.y - form.pen.Width, form.pen.Width, form.pen.Width);
             form.pen.Color = c;
             
         }
@@ -52,8 +52,8 @@ namespace asd
         public override void OnLeftClickDown(Form1 form, MouseEventArgs e)
         {
             base.OnLeftClickDown(form, e);
-            float x = e.X - startPos.x;
-            float y = e.Y - startPos.y;
+            float x = e.X - startPoint.x;
+            float y = e.Y - startPoint.y;
             float dist = (float)Math.Sqrt(x * x + y * y);
             if(dist > radius - form.pen.Width && dist < radius + form.pen.Width)
             {
@@ -66,8 +66,8 @@ namespace asd
             base.OnLeftClickDrag(form, e);
             if(isDraggingRad)
             {
-                float x = e.X - startPos.x;
-                float y = e.Y - startPos.y;
+                float x = e.X - startPoint.x;
+                float y = e.Y - startPoint.y;
                 radius = (float)Math.Sqrt(x * x + y * y);
             }
         }

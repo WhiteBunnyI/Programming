@@ -164,7 +164,7 @@ namespace asd
                     figures[index] = new Straight(20, 20, 1, 0);
                     break;
                 case "Отрезок":
-                    //figures[index] = new Straight(20, 20, 1, 1);
+                    figures[index] = new Segment(10, 10, 30, 10);
                     break;
                 case "Окружность":
                     figures[index] = new Circle(50, 50, 100);

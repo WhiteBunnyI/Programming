@@ -4,7 +4,16 @@
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello, World!");
+            
         }
+
+        static Dictionary<char, int> BadChar(string word)
+        {
+            Dictionary<char, int> result = new Dictionary<char, int>();
+
+            return result;
+        }
+
+        
     }
 }

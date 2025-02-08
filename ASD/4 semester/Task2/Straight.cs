@@ -8,7 +8,8 @@ namespace asd
     public class Straight : Dot
     {
         public Vector2 vector;
-        public Straight(int startX, int startY, int vecX, int vecY) : base(startX, startY)
+
+        public Straight(float startX, float startY, float vecX, float vecY) : base(startX, startY)
         {
             vector = new Vector2(vecX, vecY);
 
@@ -17,14 +18,26 @@ namespace asd
                 return;
             vector.x /= vecLen;
             vector.y /= vecLen;
+            
+        }
 
+        public void SetVector(float x, float y)
+        {
+            float vecLen = (float)Math.Sqrt(x * x + y * y);
+            vector.x = x;
+            vector.y = y;
+            if (vecLen == 0)
+                return;
+
+            vector.x /= vecLen;
+            vector.y /= vecLen;
         }
 
         public override float F(float x)
         {
-            if(vector.x == 0f) return startPos.y;
+            if(vector.x == 0f) return startPoint.y;
 
-            return (x - startPos.x) * vector.y / vector.x + startPos.y;
+            return (x - startPoint.x) * vector.y / vector.x + startPoint.y;
         }
 
         public override List<Dot> CheckCollide(Dot other)
@@ -51,8 +64,8 @@ namespace asd
 
         public void Copy(Straight other)
         {
-            startPos.x = other.startPos.x;
-            startPos.y = other.startPos.y;
+            startPoint.x = other.startPoint.x;
+            startPoint.y = other.startPoint.y;
             vector.x = other.vector.x;
             vector.y = other.vector.y;
         }
@@ -61,19 +74,19 @@ namespace asd
         {
             if (vector.x == 0)
             {
-                form.g.DrawLine(form.pen, startPos.x, -form.Size.Height, startPos.x, form.Size.Height * 2);
+                form.g.DrawLine(form.pen, startPoint.x, -form.Size.Height, startPoint.x, form.Size.Height * 2);
             }
             else if (vector.y == 0)
             {
-                form.g.DrawLine(form.pen, -form.Size.Width, startPos.y, form.Size.Width * 2, startPos.y);
+                form.g.DrawLine(form.pen, -form.Size.Width, startPoint.y, form.Size.Width * 2, startPoint.y);
             }
             else
             {
                 float k = vector.y / vector.x;
-                float y1 = (-form.Size.Width - startPos.x) * k + startPos.y;
-                float x1 = (y1 - startPos.y) / k + startPos.x;
-                float y2 = (form.Size.Width * 2 - startPos.x) * k + startPos.y;
-                float x2 = (y2 - startPos.y) / k + startPos.x;
+                float y1 = (-form.Size.Width - startPoint.x) * k + startPoint.y;
+                float x1 = (y1 - startPoint.y) / k + startPoint.x;
+                float y2 = (form.Size.Width * 2 - startPoint.x) * k + startPoint.y;
+                float x2 = (y2 - startPoint.y) / k + startPoint.x;
                 form.g.DrawLine(form.pen, x1, y1, x2, y2);
             }
             Color c = form.pen.Color;
@@ -89,12 +102,25 @@ namespace asd
             base.OnLeftClickDown(form, e);
             if (isDragging) return;
 
-            float y = (e.X - startPos.x) * vector.y / vector.x + startPos.y;
-
-            if (e.Y + form.pen.Width * 2 > y)
+            if(Math.Abs(vector.x) > Math.Abs(vector.y))
             {
-                isDraggingVec = e.Y - form.pen.Width * 2 < y;
+                float y = (e.X - startPoint.x) * vector.y / vector.x + startPoint.y;
+
+                if (e.Y + form.pen.Width * 2 > y)
+                {
+                    isDraggingVec = e.Y - form.pen.Width * 2 < y;
+                }
             }
+            else
+            {
+                float x = (e.Y - startPoint.y) * vector.x / vector.y + startPoint.x;
+
+                if(e.X + form.pen.Width * 2 > x)
+                {
+                    isDraggingVec = e.X - form.pen.Width * 2 < x;
+                }
+            }
+            
         }
 
         public override void OnLeftClickDrag(Form1 form, MouseEventArgs e)
@@ -102,8 +128,8 @@ namespace asd
             base.OnLeftClickDrag(form, e);
             if (isDraggingVec)
             {
-                vector.x = e.X - startPos.x;
-                vector.y = e.Y - startPos.y;
+                vector.x = e.X - startPoint.x;
+                vector.y = e.Y - startPoint.y;
                 float vecLen = (float)Math.Sqrt(vector.x * vector.x + vector.y * vector.y);
                 if (vecLen == 0)
                     return;
