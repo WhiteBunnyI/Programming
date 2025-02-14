@@ -1,12 +1,22 @@
-﻿namespace Practice_2
+﻿using System.Runtime.CompilerServices;
+
+namespace Practice_2
 {
-    public class ConsoleColor : IDisposable
+    public class ConsolePrint : IDisposable
     {
+        public enum Size
+        {
+            One,
+            Four,
+            Eight,
+        }
         private System.ConsoleColor m_prevColor;
-        public ConsoleColor(System.ConsoleColor color)
+        private Size m_size;
+        public ConsolePrint(Size size = Size.One, System.ConsoleColor color)
         {
             m_prevColor = Console.ForegroundColor;
             Console.ForegroundColor = color;
+            m_size = size;
         }
         public void Dispose()
         {
@@ -17,9 +27,9 @@
     {
         static void Main()
         {
-            using(new ConsoleColor(System.ConsoleColor.DarkGreen))
+            using(new ConsolePrint(System.ConsoleColor.DarkGreen))
             {
-                using(new ConsoleColor(System.ConsoleColor.Blue))
+                using(new ConsolePrint(System.ConsoleColor.Blue))
                 {
                     Console.WriteLine("Some other text");
                 }
