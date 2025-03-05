@@ -39,7 +39,7 @@ namespace Practice_3
 
         public override bool Is_Inside(Point point)
         {
-            
+            throw new NotImplementedException();
         }
 
         public override void Perimeter()
