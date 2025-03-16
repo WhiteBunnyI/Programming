@@ -23,13 +23,13 @@ namespace asd
                 case "Dot":
                     break;
                 case "Straight":
-                    Program.CheckCollide(this, other as Straight, ref result);
+                    ColliderForm.CheckCollide(this, other as Straight, ref result);
                     break;
                 case "Segment":
-                    Program.CheckCollide(this, other as Segment, ref result);
+                    ColliderForm.CheckCollide(this, other as Segment, ref result);
                     break;
                 case "Circle":
-                    Program.CheckCollide(this, other as Circle, ref result);
+                    ColliderForm.CheckCollide(this, other as Circle, ref result);
                     break;
             }
 

@@ -4,7 +4,9 @@
     {
         static void Main(string[] args)
         {
-            
+            while (true)
+            {
+            }
         }
 
         static Dictionary<char, int> BadChar(string word)

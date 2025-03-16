@@ -78,7 +78,7 @@ namespace asd
         private void calculate_Click(object sender, EventArgs e)
         {
             var stack = Program.Calculate(panels);
-            if (stack == null) return;
+            if (!Program.Check(stack)) return;
 
             Render(false);
 

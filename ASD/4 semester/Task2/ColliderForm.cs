@@ -6,7 +6,7 @@ using System.Windows.Forms;
 
 namespace asd
 {
-    internal static class Program
+    internal static class ColliderForm
     {
         /// <summary>
         /// Главная точка входа для приложения.

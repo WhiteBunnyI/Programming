@@ -1,6 +1,6 @@
 ﻿namespace asd
 {
-    internal class Program
+    public class Program
     {
         static void Main()
         {
@@ -9,9 +9,9 @@
                 var file = File.Create("../../../Text.txt");
                 file.Close();
             }
-            string text = File.ReadAllText("../../../Text.txt");
             Console.WriteLine("Введите образец для поиска: ");
             string sample = Console.ReadLine();
+            string text = File.ReadAllText("../../../Text.txt");
             if(sample == null || sample == "")
             {
                 Console.WriteLine("Образец не найден");

@@ -30,7 +30,7 @@ namespace Practice_4
                     if (!d.Invoke(ref this, value))
                     {
                         isCan = false;
-                        Console.WriteLine("False");
+                        break;
                     }
                     
                 }
@@ -86,7 +86,11 @@ namespace Practice_4
             _class.valueThatNeedToBeTracked.PropertyChanging += ValueThatNeedToBeTracked_PropertyChanging1;
             _class.valueThatNeedToBeTracked.PropertyChanging += ValueThatNeedToBeTracked_PropertyChanging2;
             _class.valueThatNeedToBeTracked.PropertyChanged += ValueThatNeedToBeTracked_PropertyChanged;
+            _class.valueThatNeedToBeTracked.Value = 7;
+            Console.WriteLine("Текущее значение: " + _class.valueThatNeedToBeTracked.Value);
             _class.valueThatNeedToBeTracked.Value = 11;
+            Console.WriteLine("Текущее значение: " + _class.valueThatNeedToBeTracked.Value);
+            _class.valueThatNeedToBeTracked.Value = -545;
             Console.WriteLine("Текущее значение: " + _class.valueThatNeedToBeTracked.Value);
         }
 

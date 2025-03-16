@@ -20,6 +20,15 @@ namespace asd
             Application.Run(form);
         }
 
+        public static bool Check(Stack<PointForm> points)
+        {
+            if (points == null) return false;
+
+
+
+            return true;
+        }
+
         //Алгоритм Джарвиса
         public static Stack<PointForm> Calculate(List<PointForm> points)
         {
@@ -32,7 +41,7 @@ namespace asd
             //Ищем крайнюю точку, которая гарантировано входит в выпуклую оболочку
             foreach(PointForm p in points)
             {
-                if (start.Y > p.Y)
+                if (start.Y <= p.Y && start.X >= p.X)
                     start = p;
             }
 
@@ -59,15 +68,17 @@ namespace asd
             while(current != start)
             {
                 cos = -1;
+                float x1 = current.X - result.Peek().X;
+                float y1 = current.Y - result.Peek().Y;
+
                 for (int i = 0; i < points.Count; i++)
                 {
                     if (current == points[i]) continue;
 
-                    float x1 = current.X - result.Peek().X;
-                    float y1 = current.Y - result.Peek().Y;
                     float x2 = points[i].X - current.X;
                     float y2 = points[i].Y - current.Y;
                     double tempCos = (x1 * x2 + y1 * y2) / (Math.Sqrt(x1 * x1 + y1 * y1) * Math.Sqrt(x2 * x2 + y2 * y2));
+
                     if (tempCos > cos)
                     {
                         next = points[i];
@@ -75,6 +86,8 @@ namespace asd
                     }
                 }
                 result.Push(current);
+
+                if (result.Count > points.Count) return null;
 
                 current = next;
             }
