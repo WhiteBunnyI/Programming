@@ -16,6 +16,10 @@
             result = [2, -1, 3];
             Console.WriteLine(IsEqual(Cadan(numbers), result));
 
+            numbers = [2, -3, 4, -1, -2, 1, 5, -3];
+            result = [4, -1, -2, 1, 5];
+            Console.WriteLine(IsEqual(Cadan(numbers), result));
+
         }
 
         public static bool IsEqual(List<int> a, List<int> b)
