@@ -25,7 +25,7 @@ namespace asd
         static List<Color> colors = new List<Color>()
         {
             Color.Red,
-            Color.Green, 
+            Color.Green,
             Color.Blue,
             Color.Magenta,
             Color.Yellow,
@@ -34,6 +34,15 @@ namespace asd
         };
 
         public static void Coloring(Graphics graphics, Pen pen, List<Dot> dots, List<Pair> links)
+        {
+            
+            foreach (var pair in links)
+            {
+                Console.WriteLine("f: " + pair.Key + " s: " + pair.Value);
+            }
+        }
+
+/*        public static void Coloring(Graphics graphics, Pen pen, List<Dot> dots, List<Pair> links)
         {
             int[] linksCount = new int[dots.Count];
             int[] colors = new int[dots.Count];
@@ -91,6 +100,6 @@ namespace asd
             }
             pen.Color = c;
 
-        }
+        }*/
     }
 }

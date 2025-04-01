@@ -114,20 +114,25 @@ namespace asd
             if (e.Button == MouseButtons.Right && firstLink != -1)
             {
                 int second = GetDot(e.X, e.Y, pen.Width);
-                if (second != -1 && firstLink != second)
-                {
-                    if(!links.Contains(new Pair(second,firstLink)))
-                    {
-                        if(firstLink < second)
-                            links.Add(new Pair(firstLink, second));
-                        else
-                            links.Add(new Pair(second, firstLink));
-                    }
-                    lines.Value = links.Count;
-                }
+                AddLink(firstLink, second);
             }
             firstLink = -1;
             Render();
+        }
+
+        private void AddLink(int first, int second)
+        {
+            if (second == -1 || firstLink == second) return;
+
+            Pair p;
+
+            if (first < second) p = new Pair(first, second);
+            else p = new Pair(second, first);
+
+            if (!links.Contains(p))
+            {
+                links.Add(p);
+            }
         }
 
         decimal prevPointValue;

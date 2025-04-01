@@ -28,12 +28,14 @@
 
             string text = File.ReadAllText("../../../Text.txt");
             Console.WriteLine("Введите образец для поиска: ");
-            string sample = Console.ReadLine();
+            string? sample = Console.ReadLine();
+
             if(sample == null || sample.Length == 0)
             {
-                Console.WriteLine("Образец не найден");
+                Console.WriteLine("Некорректный образец");
                 return;
             }
+
             int[] prefics = PreficsFunc(sample);
             int j = 0;
             for(int i = 0; i < text.Length; i++)
@@ -51,6 +53,7 @@
                     Console.WriteLine("Подслово было найдено! Его позиция: " + (i - j + 1));
                     j = prefics[j - 1];
                 }
+                //Console.WriteLine("i: " + i + " j: " + j);
             }
         }
     }
