@@ -70,32 +70,21 @@ namespace Lab_1
 
         public int this[int i]
         {
-            get
-            {
-                int? comp = null;
-                GetComponent(i, ref comp);
-                if (comp == null) throw new IndexOutOfRangeException();
-                return (int)comp;
-            }
-            set
-            {
-                int? comp = value;
-                GetComponent(i, ref comp);
-            }
+            get => GetComponent(i);
+            set => SetComponent(i, value);
         }
 
-        private void GetComponent(int index, ref int? value)
+        private int GetComponent(int index)
         {
-            if (value == null)
-            {
-                if (index == 0) value = X;
-                else if (index == 1) value = Y;
-                else throw new IndexOutOfRangeException();
-                return;
-            }
+            if (index == 0) return X;
+            else if (index == 1) return Y;
+            else throw new IndexOutOfRangeException();
+        }
 
-            if (index == 0) X = (int)value;
-            else if (index == 1) Y = (int)value;
+        private void SetComponent(int index, int value)
+        {
+            if (index == 0) X = value;
+            else if (index == 1) Y = value;
             else throw new IndexOutOfRangeException();
         }
 
@@ -156,5 +145,6 @@ namespace Lab_1
             get { return m_y; }
             set { m_y = value; }
         }
+
     }
 }

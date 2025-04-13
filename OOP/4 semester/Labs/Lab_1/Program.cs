@@ -23,10 +23,10 @@
             point.Y = 200;
             Console.WriteLine(point);
 
-            Point2d otherPoint = new Point2d(400, 199);
+            Point2d otherPoint = new Point2d(400, 200);
             Console.WriteLine(otherPoint);
             Console.WriteLine("Сравниваем 2 точки: " + (point == otherPoint));
-            otherPoint.Y = 200;
+            otherPoint.Y = 180;
             Console.WriteLine("Сравниваем 2 точки: " + (point == otherPoint));
 
             Console.WriteLine();
@@ -70,6 +70,12 @@
             Console.WriteLine("Векторное произведение: " + (vector.CrossProduct(otherVector)));
             Console.WriteLine("Векторное произведение (static): " + (Vector2d.CrossProduct(vector, otherVector)));
             Console.WriteLine("Смешанное произведение: " + vector.ScalarTripleProduct(otherVector));
+            Console.WriteLine();
+
+            Console.WriteLine("Задаем вектор по 2 точкам: " + point + " и " + otherPoint);
+            otherVector = new Vector2d(point, otherPoint);
+            Console.WriteLine(otherVector);
+            Console.WriteLine();
         }
     }
 }
