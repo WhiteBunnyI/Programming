@@ -43,17 +43,24 @@
         static int[] GoodSufics(string pattern)
         {
             int[] result = new int[pattern.Length + 1];
-
+            result[pattern.Length] = pattern.Length;
             for (int i = pattern.Length; i > 0; i--)
             {
-                int shift = 0;
+                int shift = pattern.Length;
                 int state = 0;
                 int maxState = pattern.Length - i;
                 for (int j = i - 1; j >= 0; j--)
                 {
+                    char a = pattern[i - 1];
+                    char b = pattern[j];
+                    char c;
+                    if (i - state != pattern.Length)
+                    {
+                        c = pattern[i - state];
+                    }
                     if (state == maxState)
                     {
-                        if (pattern[i - 1] != pattern[j])
+                        if (j == 0 || pattern[i - 1] != pattern[j])
                         {
                             shift = i - j - 1;
                             break;
@@ -63,7 +70,7 @@
                             state = 0;
                         }
                     }
-                    else if (pattern[i - state] == pattern[j])
+                    else if (pattern[pattern.Length - 1 - state] == pattern[j])
                     {
                         state++;
                     }
