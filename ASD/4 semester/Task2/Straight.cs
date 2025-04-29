@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 
-namespace asd
+namespace Task3
 {
     public class Straight : Dot
     {

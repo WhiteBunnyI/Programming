@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Windows.Forms;
 
-namespace asd
+namespace Task3
 {
     public class Segment : Dot
     {

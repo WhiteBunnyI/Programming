@@ -27,6 +27,7 @@
             }
 
             string text = File.ReadAllText("../../../Text.txt");
+
             Console.WriteLine("Введите образец для поиска: ");
             string? sample = Console.ReadLine();
 

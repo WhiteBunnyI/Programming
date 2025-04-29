@@ -4,7 +4,7 @@ using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 
-namespace asd
+namespace Task3
 {
     public partial class Form1 : Form
     {

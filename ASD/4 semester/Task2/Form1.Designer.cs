@@ -1,4 +1,4 @@
-﻿namespace asd
+﻿namespace Task3
 {
     partial class Form1
     {

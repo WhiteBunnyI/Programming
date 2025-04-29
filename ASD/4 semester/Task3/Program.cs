@@ -1,4 +1,4 @@
-﻿namespace asd
+﻿namespace Task3
 {
     public class Program
     {
@@ -9,14 +9,18 @@
                 var file = File.Create("../../../Text.txt");
                 file.Close();
             }
-            Console.WriteLine("Введите образец для поиска: ");
-            string sample = Console.ReadLine();
+
             string text = File.ReadAllText("../../../Text.txt");
+
+            Console.WriteLine("Введите образец для поиска: ");
+            string? sample = Console.ReadLine();
+
             if(sample == null || sample == "")
             {
                 Console.WriteLine("Образец не найден");
                 return;
             }
+
             int state = 0;
             for(int i = 0; i < text.Length; i++)
             {

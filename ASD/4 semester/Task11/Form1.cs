@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 
-namespace asd
+namespace Task3
 {
     using Pair = KeyValuePair<int, int>;
     public partial class Form1 : Form
