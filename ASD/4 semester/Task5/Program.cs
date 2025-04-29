@@ -21,9 +21,9 @@
             }
 
             var badChar = BadChar(pattern);
-            var goodSufics = GoodSufics(pattern);
-
-            foreach(var i in goodSufics)
+            //var goodSufics = GoodSufics(pattern);
+            var goodSufics = GoodSufics("aaccbccbcc");
+            foreach (var i in goodSufics)
             {
                 Console.WriteLine(i);
             }
@@ -34,7 +34,7 @@
         {
             Dictionary<char, int> result = [];
 
-            for(int i = 0; i < pattern.Length - 1; i++)
+            for (int i = 0; i < pattern.Length - 1; i++)
                 result[pattern[i]] = i;
 
             return result;
@@ -44,14 +44,35 @@
         {
             int[] result = new int[pattern.Length + 1];
 
-            for(int i = pattern.Length; i >= 0; i--)
+            for (int i = pattern.Length; i > 0; i--)
             {
                 int shift = 0;
                 int state = 0;
-                for(int j = i-1; j >= 0; j--)
+                int maxState = pattern.Length - i;
+                for (int j = i - 1; j >= 0; j--)
                 {
-
+                    if (state == maxState)
+                    {
+                        if (pattern[i - 1] != pattern[j])
+                        {
+                            shift = i - j - 1;
+                            break;
+                        }
+                        else
+                        {
+                            state = 0;
+                        }
+                    }
+                    else if (pattern[i - state] == pattern[j])
+                    {
+                        state++;
+                    }
+                    else
+                    {
+                        state = 0;
+                    }
                 }
+                result[pattern.Length - i] = shift;
             }
 
             return result;

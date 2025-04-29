@@ -95,7 +95,7 @@
             if (isNeedTransfer)
             {
                 Console.CursorLeft = 0;
-                Console.CursorTop = y + 1 + size;
+                Console.CursorTop = y + size;
             }
 
             Console.Write(COLOR_ANSI_COMMANDS[Color.Default]);
@@ -151,7 +151,7 @@
                     {
                         ConsolePrint.Print(chr);
                     }
-                    ConsolePrint.Print(chr, pos_x: 10, pos_y: 4);
+                    ConsolePrint.Print(chr);
                 }
             }
         }

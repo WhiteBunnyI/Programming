@@ -13,11 +13,7 @@ namespace Lab_1
             X = x; Y = y;
         }
 
-        public Vector2d(Point2d start, Point2d end)
-        {
-            X = end.X - start.X;
-            Y = end.Y - start.Y;
-        }
+        public Vector2d(Point2d start, Point2d end) : this(end.X - start.X, end.Y - start.Y) {}
 
         public static Vector2d operator +(Vector2d a, Vector2d b)
         {
@@ -76,6 +72,7 @@ namespace Lab_1
 
         private int GetComponent(int index)
         {
+            //Pattern matching(переделать) 
             if (index == 0) return X;
             else if (index == 1) return Y;
             else throw new IndexOutOfRangeException();
@@ -105,7 +102,7 @@ namespace Lab_1
 
         public int CrossProduct(Vector2d other)
         {
-            return m_x * other.m_y - m_y * other.m_x;
+            return m_x * other.m_y - m_y * other.m_x; //Возращяем площадь параллелограмма, построенного на 2 векторах
         }
 
         public int ScalarTripleProduct(Vector2d other)

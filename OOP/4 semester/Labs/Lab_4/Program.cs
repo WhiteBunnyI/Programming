@@ -1,7 +1,9 @@
-﻿namespace Lab_4
+﻿using System.ComponentModel;
+
+namespace Lab_4
 {
-    public delegate void PropertyChangedEventHandler<C>(ref C s);
-    public delegate bool PropertyChangingEventHandler<C, V>(ref C s, V value);
+    public delegate void PropertyChangedEventHandler<C>(ref C _class);
+    public delegate bool PropertyChangingEventHandler<C, V>(ref C _class, V value);
     public interface IPropertyChanged<C>
     {
         public event PropertyChangedEventHandler<C> PropertyChanged;
@@ -72,8 +74,6 @@
     public class Class_1
     {
         public TrackedProperty<int> valueThatNeedToBeTracked;
-
-
     }
 
     internal class Program
