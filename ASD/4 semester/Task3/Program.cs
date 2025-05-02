@@ -13,9 +13,9 @@
             string text = File.ReadAllText("../../../Text.txt");
 
             Console.WriteLine("Введите образец для поиска: ");
-            string? sample = Console.ReadLine();
+            string? pattern = Console.ReadLine();
 
-            if(sample == null || sample == "")
+            if(pattern == null || pattern == "")
             {
                 Console.WriteLine("Образец не найден");
                 return;
@@ -24,15 +24,14 @@
             int state = 0;
             for(int i = 0; i < text.Length; i++)
             {
-                
-                if (state < sample.Length && text[i] == sample[state])
-                    ++state;
+                if (state < pattern.Length && text[i] == pattern[state])
+                    state++;
                 else
                 {
                     state = 0;
-                    for(int o = 0; o < sample.Length; o++)
+                    for(int o = 0; o < pattern.Length; o++)
                     {
-                        if (sample[sample.Length - 1 - o] == text[i - state])
+                        if (text[i - state] == pattern[pattern.Length - 1 - o])
                         {
                             state++;
                         }
@@ -40,10 +39,10 @@
                         {
                             state = 0;
                         }
-
                     }
                 }
-                if (state == sample.Length)
+
+                if (state == pattern.Length)
                 {
                     Console.WriteLine("Подслово было найдено! Его позиция: " + (i - state + 1));
                 }

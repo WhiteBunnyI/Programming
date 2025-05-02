@@ -41,7 +41,7 @@ namespace Task3
             //Ищем крайнюю точку, которая гарантировано входит в выпуклую оболочку
             foreach(PointForm p in points)
             {
-                if (start.Y <= p.Y && start.X >= p.X)
+                if (start.Y <= p.Y)
                     start = p;
             }
 
@@ -91,6 +91,7 @@ namespace Task3
 
                 current = next;
             }
+
             result.Push(current);   //Необходим для корректного отображения линий
 
             return result;

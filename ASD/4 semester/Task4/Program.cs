@@ -29,27 +29,27 @@
             string text = File.ReadAllText("../../../Text.txt");
 
             Console.WriteLine("Введите образец для поиска: ");
-            string? sample = Console.ReadLine();
+            string? pattern = Console.ReadLine();
 
-            if(sample == null || sample.Length == 0)
+            if(pattern == null || pattern.Length == 0)
             {
                 Console.WriteLine("Некорректный образец");
                 return;
             }
 
-            int[] prefics = PreficsFunc(sample);
+            int[] prefics = PreficsFunc(pattern);
             int j = 0;
             for(int i = 0; i < text.Length; i++)
             {
-                while(j > 0 && text[i] != sample[j])
+                while(j > 0 && text[i] != pattern[j])
                 {
                     j = prefics[j - 1];
                 }
-                if (text[i] == sample[j])
+                if (text[i] == pattern[j])
                 {
                     j++;
                 }
-                if(j == sample.Length)
+                if(j == pattern.Length)
                 {
                     Console.WriteLine("Подслово было найдено! Его позиция: " + (i - j + 1));
                     j = prefics[j - 1];

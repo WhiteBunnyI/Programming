@@ -22,7 +22,8 @@
 
             var badChar = BadChar(pattern);
             //var goodSufics = GoodSufics(pattern);
-            var goodSufics = GoodSufics("aaccbccbcc");
+            //var goodSufics = GoodSufics("aaccbccbcc");
+            var goodSufics = GoodSufics("колокол");
             foreach (var i in goodSufics)
             {
                 Console.WriteLine(i);
