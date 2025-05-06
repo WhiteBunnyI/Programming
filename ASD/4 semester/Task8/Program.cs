@@ -20,20 +20,15 @@
             result = CalculateCount(nominals, collect);
             Console.WriteLine((result == test) + " " + result.ToString());
 
-            for(int i = 10; i < 50; i++)
-            {
-                //Console.WriteLine(i + "| R:" + RecursiveCalculateCount(nominals, i) + " D:" + CalculateCount(nominals, i));
-            }
-
             collect = 100;
-            //test = RecursiveCalculateCount(nominals, collect);
+            test = RecursiveCalculateCount(nominals, collect);
             result = CalculateCount(nominals, collect);
-            Console.WriteLine(result);
+            Console.WriteLine((result == test) + " " + result.ToString());
 
             collect = 8;
             test = RecursiveCalculateCount(nominals, collect);
             result = CalculateCount(nominals, collect);
-            Console.WriteLine(result + " " + test);
+            Console.WriteLine((result == test) + " " + result.ToString());
         }
 
         public static int CalculateCount(List<int> nominals, int needToCollect)
@@ -54,18 +49,19 @@
 
             return cache[needToCollect];
         }
-        //Переделать
+
         public static int RecursiveCalculateCount(List<int> nominals, int needToCollect)
         {
-            int func(ref List<int> n, int t, int c = 0)
+            int func(ref List<int> nominals, int target, int current = 0, int lastAdded = 0)
             {
-                if (c == t) return 1;
-                if (c > t) return 0;
+                if (current == target) return 1;
+                if (current > target) return 0;
 
                 int result = 0;
-                for(int i = 0; i < n.Count; i++)
+                for(int i = 0; i < nominals.Count; i++)
                 {
-                    result += func(ref n, t, c + n[i]);
+                    if(lastAdded <= nominals[i])
+                        result += func(ref nominals, target, current + nominals[i], nominals[i]);
                 }
                 return result;
             }
