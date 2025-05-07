@@ -21,45 +21,53 @@
             }
 
             var badChar = BadChar(pattern);
-            var goodSuffics = GoodSuffics(pattern);
+            var goodSuffix = GoodSuffics(pattern);
             //var goodSuffics = GoodSuffics("aaccbccbcc");
             //var goodSuffics = GoodSuffics("колокол");
 
+            Console.Write("Таблица плохого символа:   ");
             foreach (var i in badChar)
                 Console.Write($"{i} ");
             Console.WriteLine();
 
-            foreach (var i in goodSuffics)
+            Console.Write("Таблица хорошего суффикса: ");
+            foreach (var i in goodSuffix)
                 Console.Write($"{i} ");
             Console.WriteLine();
 
-            int state = 0;
-            for(int i = 0; i < text.Length - pattern.Length + 1; i++)
+            int state;
+            for (int i = 0; i <= text.Length - pattern.Length;)
             {
-                for(int j = pattern.Length - 1; j >= 0; j--)
+                int j;
+                for (j = pattern.Length - 1; j >= 0; j--)
                 {
-                    char text_ch = text[i + j];
-                    if (text_ch != pattern[j])
-                    {
-                        int shift;
-                        if (state == 0)
-                            shift = badChar.TryGetValue(text_ch, out shift) ? shift : -1;
-                        else
-                            shift = goodSuffics[state];
-
-                        i += pattern.Length - shift;
-                        state = 0;
+                    if (text[i + j] != pattern[j])
                         break;
-                    }
-
-                    state++;
-                    if(state == pattern.Length)
-                    {
-                        Console.WriteLine("Подслово было найдено! Его позиция: " + i);
-                        i += pattern.Length - 1 - goodSuffics[state];
-                        state = 0;
-                    }
                 }
+
+                state = pattern.Length - j - 1;
+
+                int shift;
+                if (state == pattern.Length)
+                {
+                    Console.WriteLine("Подслово было найдено! Его позиция: " + i);
+                    shift = (pattern.Length > 1) ? goodSuffix[state] : 1;
+                }
+                else
+                {
+                    int shiftBadChar;
+                    int shiftGoodSuffix;
+                    if (badChar.TryGetValue(text[i + j], out int bcShift))
+                        shiftBadChar = j - bcShift;
+                    else
+                        shiftBadChar = j + 1;
+
+                    shiftGoodSuffix = goodSuffix[state];
+
+                    shift = Math.Max(shiftBadChar, shiftGoodSuffix);
+                }
+
+                i += shift;
             }
         }
 
@@ -101,51 +109,6 @@
 
             return result;
 
-        }
-
-        static int[] GoodSufics(char[] pattern)
-        {
-            int[] result = new int[pattern.Length + 1];
-            result[pattern.Length] = pattern.Length;
-            for (int i = pattern.Length; i > 0; i--)
-            {
-                int shift = pattern.Length;
-                int state = 0;
-                int maxState = pattern.Length - i;
-                for (int j = i - 1; j >= 0; j--)
-                {
-                    char a = pattern[i - 1];
-                    char b = pattern[j];
-                    char c;
-                    if (i - state != pattern.Length)
-                    {
-                        c = pattern[i - state];
-                    }
-                    if (state == maxState)
-                    {
-                        if (j == 0 || pattern[i - 1] != pattern[j])
-                        {
-                            shift = i - j - 1;
-                            break;
-                        }
-                        else
-                        {
-                            state = 0;
-                        }
-                    }
-                    else if (pattern[pattern.Length - 1 - state] == pattern[j])
-                    {
-                        state++;
-                    }
-                    else
-                    {
-                        state = 0;
-                    }
-                }
-                result[pattern.Length - i] = shift;
-            }
-
-            return result;
         }
 
     }

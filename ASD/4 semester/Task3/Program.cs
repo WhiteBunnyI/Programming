@@ -1,6 +1,5 @@
 ﻿namespace Task3;
 
-using INT_CHAR = KeyValuePair<int, char>;
 public class Program
 {
     public static List<Dictionary<char, int>> Calculate(ref List<char> unique_chars, string pattern)
