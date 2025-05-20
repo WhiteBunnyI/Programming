@@ -2,13 +2,7 @@
 
 public class PrintKeyHandler : IKeyHandler
 {
-    public static PrintKeyHandler Instance { get; private set; }
-    static string text = "";
-
-    static PrintKeyHandler()
-    {
-        Instance = new PrintKeyHandler();
-    }
+    string text = "";
 
     public void Execute(Key key)
     {

@@ -2,13 +2,6 @@
 
 internal class VolumeDownHandler : IKeyHandler
 {
-    public static VolumeDownHandler Instance { get; private set; }
-
-    static VolumeDownHandler()
-    {
-        Instance = new VolumeDownHandler();
-    }
-
     public void Execute(Key key)
     {
         VirtualKeyboard.LogToFile("Volume decrease 20%");

@@ -1,8 +1,8 @@
 ﻿using Lab_6;
 
-VirtualKeyboard.AddHotKey(PrintKeyHandler.Instance, new Key(null, ConsoleModifiers.None));
-VirtualKeyboard.AddHotKey(VolumeUpHandler.Instance, new Key('+', ConsoleModifiers.Alt));
-VirtualKeyboard.AddHotKey(VolumeDownHandler.Instance, new Key('-', ConsoleModifiers.Alt));
+VirtualKeyboard.AddHotKey(new PrintKeyHandler(), new Key(null, ConsoleModifiers.None));
+VirtualKeyboard.AddHotKey(new VolumeUpHandler(), new Key('+', ConsoleModifiers.Alt));
+VirtualKeyboard.AddHotKey(new VolumeDownHandler(), new Key('-', ConsoleModifiers.Alt));
 
 
 while (true)
