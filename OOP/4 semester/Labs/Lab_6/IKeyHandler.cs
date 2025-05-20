@@ -1,4 +1,6 @@
-﻿namespace Lab_6;
+﻿using System.Text.Json.Serialization;
+
+namespace Lab_6;
 
 public interface IKeyHandler
 {

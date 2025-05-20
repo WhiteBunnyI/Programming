@@ -1,6 +1,6 @@
 ﻿namespace Lab_6;
 
-public class VirtualKeyboard
+public partial class VirtualKeyboard
 {
     static List<(IKeyHandler hanlder, Key key)> _history;
     static int _historyIndex = 0;
@@ -21,6 +21,12 @@ public class VirtualKeyboard
         if(key.Key == ConsoleKey.Escape)
         {
             Undo();
+            return;
+        }
+
+        if(key.Key == ConsoleKey.Tab)
+        {
+            Redo();
             return;
         }
 
@@ -54,6 +60,15 @@ public class VirtualKeyboard
         (IKeyHandler handler, Key key) = _history[_historyIndex];
         handler.Undo(key);
         LogToConsole("Undo");
+    }
+
+    public static void Redo()
+    {
+        if(_historyIndex == _history.Count) return;
+        (IKeyHandler handler, Key key) = _history[_historyIndex];
+        handler.Execute(key);
+        _historyIndex++;
+        LogToConsole("Redo");
     }
 
     public static void AddHotKey(IKeyHandler handler, Key key)
