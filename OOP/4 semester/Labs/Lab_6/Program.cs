@@ -1,6 +1,6 @@
 ﻿using Lab_6;
 
-string keyboardStatePath = "../../../save.state";
+string keyboardStatePath = "../../../save.txt";
 
 VirtualKeyboard.AddHotKey(new PrintKeyHandler(), new Key(null, ConsoleModifiers.None));
 VirtualKeyboard.AddHotKey(new VolumeUpHandler(), new Key('+', ConsoleModifiers.Alt));

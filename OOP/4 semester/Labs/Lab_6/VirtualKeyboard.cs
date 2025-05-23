@@ -2,7 +2,7 @@
 
 public partial class VirtualKeyboard
 {
-    static List<(IKeyHandler hanlder, Key key)> _history;
+    static List<Key> _history;
     static int _historyIndex = 0;
 
     static Dictionary<Key, List<IKeyHandler>> _handlers;
@@ -16,59 +16,101 @@ public partial class VirtualKeyboard
         _writer = new StreamWriter(stream);
     }
 
+    private static void Recover()
+    {
+        foreach (Key key in _history)
+        {
+            Proceed(key, false);
+        }
+
+        for (int i = 0; i < _history.Count - _historyIndex; i++)
+            LogToConsole("Undo");
+    }
+
     public static void Proceed(ConsoleKeyInfo key)
     {
-        if(key.Key == ConsoleKey.Escape)
+        Proceed(new Key(key.KeyChar, key.Modifiers), true);
+    }
+
+    public static void Proceed(Key key)
+    {
+        Proceed(key, true);
+    }
+
+    private static void Proceed(Key key, bool writeInHistory)
+    {
+        if (key.key == (int)ConsoleKey.Escape)
         {
             Undo();
             return;
         }
 
-        if(key.Key == ConsoleKey.Tab)
+        if (key.key == (int)ConsoleKey.Tab)
         {
             Redo();
             return;
         }
 
         List<Key> _keys = [
-            new Key(key.KeyChar, key.Modifiers), 
-            new Key(null, key.Modifiers)
+            key,
+            new Key(null, key.modifiers)
         ];
 
-        LogToConsole(_keys[0].ToString());
-
-        foreach(var _key in _keys)
+        if (writeInHistory)
         {
-            if (_handlers.TryGetValue(_key, out var handlers))
-            {
-                foreach (IKeyHandler handler in handlers)
-                {
-                    handler.Execute(_keys[0]);
-                    if(_historyIndex != _history.Count)
-                        _history = _history[.._historyIndex];
-                    _history.Add(new (handler, _keys[0]));
-                    _historyIndex++;
-                }
-            }
+            if (_historyIndex != _history.Count)
+                _history = _history[.._historyIndex];
+            _history.Add(key);
+            _historyIndex++;
         }
+
+        LogToConsole(key.ToString());
+
+        foreach (var _key in _keys)
+        {
+            var handlers = GetHandler(_key);
+            if (handlers == null) continue;
+
+            foreach (var handler in handlers)
+                handler.Execute(key);
+        }
+            
     }
 
+    private static List<IKeyHandler>? GetHandler(Key key)
+    {
+        if (_handlers.TryGetValue(key, out var handlers))
+            return handlers;
+
+        return null;
+    }
+    
     public static void Undo()
     {
         if (_historyIndex == 0) return;
-        _historyIndex--;
-        (IKeyHandler handler, Key key) = _history[_historyIndex];
-        handler.Undo(key);
         LogToConsole("Undo");
+
+        _historyIndex--;
+        Key key = _history[_historyIndex];
+
+        var handlers = GetHandler(key);
+        if (handlers == null) return;
+        foreach(var handler in handlers)
+            handler.Undo(key);
     }
 
     public static void Redo()
     {
         if(_historyIndex == _history.Count) return;
-        (IKeyHandler handler, Key key) = _history[_historyIndex];
-        handler.Execute(key);
-        _historyIndex++;
         LogToConsole("Redo");
+
+        Key key = _history[_historyIndex];
+        _historyIndex++;
+
+        var handlers = GetHandler(key);
+        if (handlers == null) return;
+        foreach (var handler in handlers)
+            handler.Execute(key);
     }
 
     public static void AddHotKey(IKeyHandler handler, Key key)
