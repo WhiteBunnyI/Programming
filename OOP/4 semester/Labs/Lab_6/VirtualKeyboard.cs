@@ -4,8 +4,8 @@ public partial class VirtualKeyboard
 {
     static List<Key> _globalHistory;
 
-    static List<Key> _history;
-    static int _historyIndex = 0;
+    static List<Key> _buffer;
+    static int _bufferIndex = 0;
 
     static Dictionary<Key, List<IKeyHandler>> _handlers;
 
@@ -20,7 +20,7 @@ public partial class VirtualKeyboard
     static VirtualKeyboard()
     {
         _globalHistory = [];
-        _history = [];
+        _buffer = [];
         _handlers = [];
         var stream = File.Open("../../../Log.txt", FileMode.Create, FileAccess.ReadWrite, FileShare.Read);
         _writer = new StreamWriter(stream);
@@ -55,10 +55,10 @@ public partial class VirtualKeyboard
 
         LogToConsole(key.ToString());
 
-        if (_historyIndex != _history.Count)
-            _history = _history[.._historyIndex];
-        _history.Add(key);
-        _historyIndex++;
+        if (_bufferIndex != _buffer.Count)
+            _buffer = _buffer[.._bufferIndex];
+        _buffer.Add(key);
+        _bufferIndex++;
 
         var handlers = GetHandler(key);
         foreach (var handler in handlers)
@@ -85,11 +85,11 @@ public partial class VirtualKeyboard
     
     public static void Undo()
     {
-        if (_historyIndex == 0) return;
+        if (_bufferIndex == 0) return;
         LogToConsole("Undo");
 
-        _historyIndex--;
-        Key key = _history[_historyIndex];
+        _bufferIndex--;
+        Key key = _buffer[_bufferIndex];
 
         var handlers = GetHandler(key);
         foreach(var handler in handlers)
@@ -98,11 +98,11 @@ public partial class VirtualKeyboard
 
     public static void Redo()
     {
-        if(_historyIndex == _history.Count) return;
+        if(_bufferIndex == _buffer.Count) return;
         LogToConsole("Redo");
 
-        Key key = _history[_historyIndex];
-        _historyIndex++;
+        Key key = _buffer[_bufferIndex];
+        _bufferIndex++;
 
         var handlers = GetHandler(key);
         foreach (var handler in handlers)

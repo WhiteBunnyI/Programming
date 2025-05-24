@@ -122,6 +122,86 @@
       {
         "key": "\t",
         "modifiers": 0
+      },
+      {
+        "key": "\u002B",
+        "modifiers": 1
+      },
+      {
+        "key": "\u002B",
+        "modifiers": 1
+      },
+      {
+        "key": "-",
+        "modifiers": 1
+      },
+      {
+        "key": "-",
+        "modifiers": 1
+      },
+      {
+        "key": "\u002B",
+        "modifiers": 1
+      },
+      {
+        "key": "\u001B",
+        "modifiers": 0
+      },
+      {
+        "key": "\u001B",
+        "modifiers": 0
+      },
+      {
+        "key": "\u001B",
+        "modifiers": 0
+      },
+      {
+        "key": "\u001B",
+        "modifiers": 0
+      },
+      {
+        "key": "\u001B",
+        "modifiers": 0
+      },
+      {
+        "key": "\u001B",
+        "modifiers": 0
+      },
+      {
+        "key": "\u001B",
+        "modifiers": 0
+      },
+      {
+        "key": "\u001B",
+        "modifiers": 0
+      },
+      {
+        "key": "\u001B",
+        "modifiers": 0
+      },
+      {
+        "key": "\u001B",
+        "modifiers": 0
+      },
+      {
+        "key": "\u001B",
+        "modifiers": 0
+      },
+      {
+        "key": "\u001B",
+        "modifiers": 0
+      },
+      {
+        "key": "\u001B",
+        "modifiers": 0
+      },
+      {
+        "key": "\u001B",
+        "modifiers": 0
+      },
+      {
+        "key": "\u001B",
+        "modifiers": 0
       }
     ]
   },
