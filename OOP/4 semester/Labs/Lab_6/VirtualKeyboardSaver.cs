@@ -14,11 +14,18 @@ public partial class VirtualKeyboard
             public List<KeyValuePair<Key, List<IKeyHandler>>>? handlers = null;
         }
 
-        static JsonSerializerOptions _options = new() { WriteIndented = true, IncludeFields = true, ReferenceHandler = ReferenceHandler.Preserve };
+        static JsonSerializerOptions _options;
+
+        static VirtualKeyboardSaver()
+        {
+            _options = new() { WriteIndented = true, IncludeFields = true, ReferenceHandler = ReferenceHandler.Preserve };
+            _options.AddAutoDerivedTypes();
+        }
+
         public static void Recover(string filePath)
         {
             using var stream = File.Open(filePath, FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.None);
-            var reader = new StreamReader(stream);
+            using var reader = new StreamReader(stream);
             string text = reader.ReadToEnd();
             if (text.Length == 0)
                 return;

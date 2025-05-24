@@ -1,7 +1,32 @@
 a
 as
 asd
+asdf
 Media player launched
 Volume increase 20%
 Volume increase 20%
 Volume increase 20%
+Volume decrease 20%
+Volume decrease 20%
+Volume decrease 20%
+Volume increase 20%
+Volume increase 20%
+Volume increase 20%
+Volume decrease 20%
+Volume decrease 20%
+Volume decrease 20%
+Media player closed
+asd
+as
+a
+
+ 
+  
+   
+    
+     
+      
+       
+       a
+       as
+       asd

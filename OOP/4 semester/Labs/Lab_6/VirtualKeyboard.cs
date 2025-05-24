@@ -115,7 +115,7 @@ public partial class VirtualKeyboard
 
         foreach (var h in _handlers[key])
         {
-            if (handler.GetType() == h.GetType()) return;
+            if (handler.GetType() == h.GetType()) return;   //Избегаем дублирования
         }
 
         _handlers[key].Add(handler);
