@@ -4,39 +4,7 @@
     "$id": "2",
     "$values": [
       {
-        "key": "d",
-        "modifiers": 0
-      },
-      {
-        "key": "g",
-        "modifiers": 0
-      },
-      {
-        "key": "d",
-        "modifiers": 0
-      },
-      {
-        "key": "f",
-        "modifiers": 0
-      },
-      {
-        "key": "g",
-        "modifiers": 0
-      },
-      {
-        "key": "d",
-        "modifiers": 0
-      },
-      {
         "key": "a",
-        "modifiers": 0
-      },
-      {
-        "key": "d",
-        "modifiers": 0
-      },
-      {
-        "key": "f",
         "modifiers": 0
       },
       {
@@ -48,28 +16,112 @@
         "modifiers": 0
       },
       {
-        "key": "f",
+        "key": "\u002B",
+        "modifiers": 1
+      },
+      {
+        "key": "\u002B",
+        "modifiers": 1
+      },
+      {
+        "key": "\u002B",
+        "modifiers": 1
+      },
+      {
+        "key": "\u002B",
+        "modifiers": 1
+      },
+      {
+        "key": "\u001B",
         "modifiers": 0
       },
       {
-        "key": "\u002B",
-        "modifiers": 1
+        "key": "\u001B",
+        "modifiers": 0
       },
       {
-        "key": "\u002B",
-        "modifiers": 1
+        "key": "\u001B",
+        "modifiers": 0
       },
       {
-        "key": "\u002B",
-        "modifiers": 1
+        "key": "\u001B",
+        "modifiers": 0
       },
       {
-        "key": "\u002B",
-        "modifiers": 1
+        "key": "\u001B",
+        "modifiers": 0
       },
       {
-        "key": "\u002B",
-        "modifiers": 1
+        "key": "\u001B",
+        "modifiers": 0
+      },
+      {
+        "key": "\u001B",
+        "modifiers": 0
+      },
+      {
+        "key": "\u001B",
+        "modifiers": 0
+      },
+      {
+        "key": "\u001B",
+        "modifiers": 0
+      },
+      {
+        "key": "\u001B",
+        "modifiers": 0
+      },
+      {
+        "key": "\t",
+        "modifiers": 0
+      },
+      {
+        "key": "\t",
+        "modifiers": 0
+      },
+      {
+        "key": "\t",
+        "modifiers": 0
+      },
+      {
+        "key": "\t",
+        "modifiers": 0
+      },
+      {
+        "key": "\t",
+        "modifiers": 0
+      },
+      {
+        "key": "\t",
+        "modifiers": 0
+      },
+      {
+        "key": "\t",
+        "modifiers": 0
+      },
+      {
+        "key": "\t",
+        "modifiers": 0
+      },
+      {
+        "key": "\t",
+        "modifiers": 0
+      },
+      {
+        "key": "\t",
+        "modifiers": 0
+      },
+      {
+        "key": "\t",
+        "modifiers": 0
+      },
+      {
+        "key": "\t",
+        "modifiers": 0
+      },
+      {
+        "key": "\t",
+        "modifiers": 0
       }
     ]
   },
@@ -122,6 +174,5 @@
         }
       }
     ]
-  },
-  "historyIndex": 17
+  }
 }

@@ -12,7 +12,6 @@ public partial class VirtualKeyboard
         {
             public List<Key>? history = null;
             public List<KeyValuePair<Key, List<IKeyHandler>>>? handlers = null;
-            public int historyIndex = -1;
         }
 
         static JsonSerializerOptions _options = new() { WriteIndented = true, IncludeFields = true, ReferenceHandler = ReferenceHandler.Preserve };
@@ -25,8 +24,7 @@ public partial class VirtualKeyboard
                 return;
 
             SaveState save = JsonSerializer.Deserialize<SaveState>(text, _options) ?? new();
-            _history = save.history ?? [];
-            _historyIndex = save.historyIndex;
+            _globalHistory = save.history ?? [];
             _handlers = save.handlers?.ToDictionary() ?? [];
             VirtualKeyboard.Recover();
         }
@@ -34,7 +32,7 @@ public partial class VirtualKeyboard
         public static void Save(string filePath)
         {
             using var stream = File.OpenWrite(filePath);
-            SaveState save = new SaveState() { history = _history, handlers = _handlers.ToList(), historyIndex = _historyIndex };
+            SaveState save = new SaveState() { history = _globalHistory, handlers = _handlers.ToList() };
             JsonSerializer.Serialize(stream, save, _options);
 
             stream.Flush();

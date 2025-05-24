@@ -2,14 +2,24 @@
 
 public partial class VirtualKeyboard
 {
+    static List<Key> _globalHistory;
+
     static List<Key> _history;
     static int _historyIndex = 0;
 
     static Dictionary<Key, List<IKeyHandler>> _handlers;
 
     static StreamWriter _writer;
+
+    static Dictionary<ConsoleKey, Action> _specialKeys = new()
+    {
+        { ConsoleKey.Escape,    Undo },
+        { ConsoleKey.Tab,       Redo },
+    };
+
     static VirtualKeyboard()
     {
+        _globalHistory = [];
         _history = [];
         _handlers = [];
         var stream = File.Open("../../../Log.txt", FileMode.Create, FileAccess.ReadWrite, FileShare.Read);
@@ -18,13 +28,8 @@ public partial class VirtualKeyboard
 
     private static void Recover()
     {
-        foreach (Key key in _history)
-        {
+        foreach (Key key in _globalHistory)
             Proceed(key, false);
-        }
-
-        for (int i = 0; i < _history.Count - _historyIndex; i++)
-            LogToConsole("Undo");
     }
 
     public static void Proceed(ConsoleKeyInfo key)
@@ -39,50 +44,43 @@ public partial class VirtualKeyboard
 
     private static void Proceed(Key key, bool writeInHistory)
     {
-        if (key.key == (int)ConsoleKey.Escape)
+        if(writeInHistory)
+            _globalHistory.Add(key);
+
+        if (key.key != null && _specialKeys.TryGetValue((ConsoleKey)key.key, out var action))
         {
-            Undo();
+            action();
             return;
         }
 
-        if (key.key == (int)ConsoleKey.Tab)
-        {
-            Redo();
-            return;
-        }
+        LogToConsole(key.ToString());
 
+        if (_historyIndex != _history.Count)
+            _history = _history[.._historyIndex];
+        _history.Add(key);
+        _historyIndex++;
+
+        var handlers = GetHandler(key);
+        foreach (var handler in handlers)
+            handler.Execute(key);
+    }
+
+    private static List<IKeyHandler> GetHandler(Key key)
+    {
         List<Key> _keys = [
             key,
             new Key(null, key.modifiers)
         ];
 
-        if (writeInHistory)
-        {
-            if (_historyIndex != _history.Count)
-                _history = _history[.._historyIndex];
-            _history.Add(key);
-            _historyIndex++;
-        }
-
-        LogToConsole(key.ToString());
+        List<IKeyHandler> handlers = [];
 
         foreach (var _key in _keys)
         {
-            var handlers = GetHandler(_key);
-            if (handlers == null) continue;
-
-            foreach (var handler in handlers)
-                handler.Execute(key);
+            if(_handlers.TryGetValue(_key, out var found))
+                handlers.AddRange(found);
         }
-            
-    }
 
-    private static List<IKeyHandler>? GetHandler(Key key)
-    {
-        if (_handlers.TryGetValue(key, out var handlers))
-            return handlers;
-
-        return null;
+        return handlers;
     }
     
     public static void Undo()
@@ -94,7 +92,6 @@ public partial class VirtualKeyboard
         Key key = _history[_historyIndex];
 
         var handlers = GetHandler(key);
-        if (handlers == null) return;
         foreach(var handler in handlers)
             handler.Undo(key);
     }
@@ -108,7 +105,6 @@ public partial class VirtualKeyboard
         _historyIndex++;
 
         var handlers = GetHandler(key);
-        if (handlers == null) return;
         foreach (var handler in handlers)
             handler.Execute(key);
     }
