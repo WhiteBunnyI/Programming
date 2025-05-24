@@ -1,34 +1,46 @@
 [
   {
-    "Id": 0,
-    "Name": "Oleg",
-    "Login": "OlegLogin",
-    "Password": "OlegPassword",
-    "Email": null,
-    "Address": null
+    "user": {
+      "Id": 0,
+      "Name": "Oleg",
+      "Login": "OlegLogin",
+      "Email": null,
+      "Address": null
+    },
+    "iv": "sJlL49JDcnFZLOKGjviwNQ==",
+    "encryptPassword": "AvH0lEgWGMk5RuL4tIBhqQ=="
   },
   {
-    "Id": 1,
-    "Name": "Roman",
-    "Login": "RomanLogin",
-    "Password": "RomanPassword",
-    "Email": null,
-    "Address": null
+    "user": {
+      "Id": 1,
+      "Name": "Roman",
+      "Login": "RomanLogin",
+      "Email": null,
+      "Address": null
+    },
+    "iv": "ITsMfGJryX5MqueXm+56/g==",
+    "encryptPassword": "Wunxy4Jdnbz6clFtraQ8Vg=="
   },
   {
-    "Id": 2,
-    "Name": "Ivan",
-    "Login": "IvanLogin",
-    "Password": "IvanPassword",
-    "Email": "IvanEmail@mail.ru",
-    "Address": "IvanAddress, 10"
+    "user": {
+      "Id": 2,
+      "Name": "Ivan",
+      "Login": "IvanLogin",
+      "Email": "IvanEmail@mail.ru",
+      "Address": "IvanAddress, 10"
+    },
+    "iv": "hb8m2Sz+1F2IwQnuIXifyA==",
+    "encryptPassword": "APE0k3y8hyg/cqSN7b7OUw=="
   },
   {
-    "Id": 3,
-    "Name": "Denis",
-    "Login": "DenisLogin",
-    "Password": "DenisPassword",
-    "Email": null,
-    "Address": "DenisAddress, 5"
+    "user": {
+      "Id": 3,
+      "Name": "Denis",
+      "Login": "DenisLogin",
+      "Email": null,
+      "Address": "DenisAddress, 5"
+    },
+    "iv": "iO4zo/1wwXqX9x247CYvzA==",
+    "encryptPassword": "7vdhemAhkiaCsu793mAXVw=="
   }
 ]

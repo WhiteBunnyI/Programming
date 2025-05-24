@@ -8,7 +8,7 @@ User[] users =
     new User(3, "Denis", "DenisLogin", "DenisPassword", Address: "DenisAddress, 5"),
 ];
 
-UserRepository repository = new("../../../User_DB.txt");
+UserRepository repository = new("../../../User_DB.txt", "../../../key.txt");
 
 foreach(User user in users)
     repository.Add(user);
