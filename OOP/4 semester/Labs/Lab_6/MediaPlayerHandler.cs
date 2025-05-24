@@ -2,14 +2,7 @@
 
 public class MediaPlayerHandler : IKeyHandler
 {
-    public static MediaPlayerHandler Instance { get; private set; }
-
-    static bool isOpen;
-
-    static MediaPlayerHandler()
-    {
-        Instance = new MediaPlayerHandler();
-    }
+    bool isOpen;
 
     public void Execute(Key key)
     {

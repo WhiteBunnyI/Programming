@@ -112,7 +112,12 @@ public partial class VirtualKeyboard
     public static void AddHotKey(IKeyHandler handler, Key key)
     {
         _handlers.TryAdd(key, []);
-        _handlers[key].Remove(handler);    //Избегаем дублирования
+
+        foreach (var h in _handlers[key])
+        {
+            if (handler.GetType() == h.GetType()) return;
+        }
+
         _handlers[key].Add(handler);
     }
 

@@ -5,6 +5,7 @@ string keyboardStatePath = "../../../save.txt";
 VirtualKeyboard.AddHotKey(new PrintKeyHandler(), new Key(null, ConsoleModifiers.None));
 VirtualKeyboard.AddHotKey(new VolumeUpHandler(), new Key('+', ConsoleModifiers.Alt));
 VirtualKeyboard.AddHotKey(new VolumeDownHandler(), new Key('-', ConsoleModifiers.Alt));
+VirtualKeyboard.AddHotKey(new MediaPlayerHandler(), new Key('=', ConsoleModifiers.Alt));
 
 VirtualKeyboardSaver.Recover(keyboardStatePath);
 

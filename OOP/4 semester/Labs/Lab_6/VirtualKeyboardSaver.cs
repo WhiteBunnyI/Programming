@@ -25,7 +25,11 @@ public partial class VirtualKeyboard
 
             SaveState save = JsonSerializer.Deserialize<SaveState>(text, _options) ?? new();
             _globalHistory = save.history ?? [];
-            _handlers = save.handlers?.ToDictionary() ?? [];
+            foreach (var pair in _handlers)
+            {
+                foreach (var handler in pair.Value)
+                    AddHotKey(handler, pair.Key);
+            }
             VirtualKeyboard.Recover();
         }
 
