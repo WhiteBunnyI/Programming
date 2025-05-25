@@ -30,7 +30,7 @@ public class DataRepository<T> : IDataRepository<T> where T : IIdentifiable
         writer.Flush();
     }
 
-    protected virtual List<T> ReadFile()
+    protected virtual List<T> ReadFromFile()
     {
         using var stream = File.Open(filePath, FileMode.Open, FileAccess.Read, FileShare.Read);
         List<T> result = JsonSerializer.Deserialize<List<T>>(stream, options) ?? [];
@@ -39,7 +39,7 @@ public class DataRepository<T> : IDataRepository<T> where T : IIdentifiable
 
     public virtual void Add(T item)
     {
-        var items = ReadFile();
+        var items = ReadFromFile();
         if(items.FindIndex(x => x.Id == item.Id) == -1)
         {
             items.Add(item);
@@ -48,17 +48,17 @@ public class DataRepository<T> : IDataRepository<T> where T : IIdentifiable
     }
     public virtual List<T> GetAll()
     {
-        return ReadFile();
+        return ReadFromFile();
     }
 
     public virtual T? GetById(int id)
     {
-        return ReadFile().Find(x => x.Id == id);
+        return ReadFromFile().Find(x => x.Id == id);
     }
 
     public virtual void Update(T item)
     {
-        var items = ReadFile();
+        var items = ReadFromFile();
         int index = items.FindIndex(x => x.Id == item.Id);
         items.RemoveAt(index);
         items.Insert(index, item);
@@ -67,7 +67,7 @@ public class DataRepository<T> : IDataRepository<T> where T : IIdentifiable
 
     public virtual void Delete(T item)
     {
-        var items = ReadFile();
+        var items = ReadFromFile();
         items.Remove(item);
         SaveToFile(items);
     }

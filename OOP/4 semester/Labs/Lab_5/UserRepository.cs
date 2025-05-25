@@ -43,7 +43,7 @@ public class UserRepository : DataRepository<User>
         writer.Flush();
     }
 
-    protected override List<User> ReadFile()
+    protected override List<User> ReadFromFile()
     {
         using var stream = File.Open(filePath, FileMode.Open, FileAccess.Read, FileShare.Read);
         List<UserSave> result = JsonSerializer.Deserialize<List<UserSave>>(stream, options) ?? [];
