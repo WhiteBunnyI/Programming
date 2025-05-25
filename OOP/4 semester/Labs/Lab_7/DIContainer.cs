@@ -13,9 +13,9 @@ public class DIContainer
         BoxScope prevScope;
         object scopeObject;
 
-        public BoxScope(object obj)
+        public BoxScope(Func<object> obj)
         {
-            scopeObject = obj;
+            scopeObject = obj();
             prevScope = currentScope;
             currentScope = this;
         }
@@ -43,11 +43,16 @@ public class DIContainer
         {
             this.fabric = fabric;
         }
-        public object GetObject => fabric();
+        public object GetObject => fabric.Invoke();
     }
 
 
-    Dictionary<Type, Func<IBox>> registrations = new Dictionary<Type, Func<IBox>>();
+    Dictionary<Type, IBox> registrations = new Dictionary<Type, IBox>();
+
+    public IBox GetInstanceBox<I>()
+    {
+        return GetInstance(typeof(I));
+    }
 
     public I GetInstance<I>()
     {
@@ -58,21 +63,21 @@ public class DIContainer
     {
         if (!registrations.ContainsKey(type))
             throw new ArgumentException("Был получен незарегистрированный интерфейс");
-        return registrations[type]();
+        return registrations[type];
     }
 
-    public void Register<I, C>(LifeStyle lifeStyle) where C : class, I
+    public void Register<I, C>(LifeStyle lifeStyle, params object[] extra) where C : class, I
     {
         switch (lifeStyle)
         {
             case LifeStyle.PerRequest:
-                RegisterPerRequest<I, C>(Create<I, C>);
+                RegisterPerRequest<I, C>(() => Create<I, C>(extra));
                 break;
             case LifeStyle.Scoped:
-                RegisterScoped<I, C>(Create<I, C>);
+                RegisterScoped<I, C>(() => Create<I, C>(extra));
                 break;
             case LifeStyle.Singleton:
-                RegisterSingleton<I, C>(Create<I, C>);
+                RegisterSingleton<I, C>(() => Create<I, C>(extra));
                 break;
         }
     }
@@ -93,27 +98,43 @@ public class DIContainer
         }
     }
 
-    private C Create<I, C>() where C : class, I
+    private C Create<I, C>(params object[] extra) where C : class, I
     {
         var type = typeof(C);
         var constructor = type.GetConstructors().First();
         var parameters = constructor.GetParameters();
-        var resolvedParams = parameters.Select(p => GetInstance(p.ParameterType).GetObject).ToArray();
+        var resolvedParams = parameters.Select(p =>
+        {
+            if (registrations.ContainsKey(p.ParameterType))
+                return GetInstance(p.ParameterType).GetObject;
+            return null;
+        }).ToArray();
+
+        int j = 0;
+        for (int i = 0; i < resolvedParams.Length; i++)
+        {
+            if (resolvedParams[i] == null)
+            {
+                resolvedParams[i] = extra[j];
+                j++;
+            }
+        }
+
         return (C)Activator.CreateInstance(type, resolvedParams);
     }
 
     private void RegisterPerRequest<I, C>(Func<C> fabric) where C : class, I
     {
-        registrations[typeof(I)] = () => new BoxPerRequest(fabric);
+        registrations[typeof(I)] = new BoxPerRequest(fabric);
     }
 
     private void RegisterScoped<I, C>(Func<C> fabric) where C : class, I
     {
-        registrations[typeof(I)] = () => new BoxScope(fabric);
+        registrations[typeof(I)] = new BoxScope(fabric);
     }
 
     private void RegisterSingleton<I, C>(Func<C> fabric) where C : class, I
     {
-        registrations[typeof(I)] = () => new BoxSingleton(fabric);
+        registrations[typeof(I)] = new BoxSingleton(fabric);
     }
 }

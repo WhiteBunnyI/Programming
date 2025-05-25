@@ -9,16 +9,19 @@ public class OneCustomer : ICustomer
 {
     ILogger logger;
     IService service;
+    string name;
 
-    public OneCustomer(ILogger logger, IService service)
+    public OneCustomer(ILogger logger, IService service, string name)
     {
+        Console.WriteLine("Create a customer");
         this.logger = logger;
         this.service = service;
+        this.name = name;
     }
 
     public void RequestWork()
     {
-        logger.Log("Customer is coming!");
+        logger.Log($"{name} is coming!");
         service.Work();
     }
 }

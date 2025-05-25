@@ -7,6 +7,10 @@ public interface ILogger
 
 public class ConsoleLogger : ILogger
 {
+    public ConsoleLogger()
+    {
+        Console.WriteLine("Create a logger");
+    }
     public void Log(string message)
     {
         Console.WriteLine(message);
@@ -15,15 +19,21 @@ public class ConsoleLogger : ILogger
 
 public class FileLogger : ILogger
 {
-    string filePath;
+    StreamWriter writer;
     public FileLogger(string filePath)
     {
-        this.filePath = filePath;
+        var stream = File.Open(filePath, FileMode.Create, FileAccess.Write, FileShare.Read);
+        writer = new StreamWriter(stream);
     }
+
+    ~FileLogger()
+    {
+        writer.Dispose();
+    }
+
     public void Log(string message)
     {
-        using var stream = File.Open(filePath, FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.Read);
-        using var writer = new StreamWriter(stream);
-        writer.Write(message);
+        writer.Write(message+'\n');
+        writer.Flush();
     }
 }
