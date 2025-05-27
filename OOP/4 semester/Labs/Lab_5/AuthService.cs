@@ -38,6 +38,7 @@ public class AuthService : IAuthService
     {
         CreateFile();
     }
+
     public bool IsAuthorized => GetUser() != null;
 
     public User? User => GetUser();

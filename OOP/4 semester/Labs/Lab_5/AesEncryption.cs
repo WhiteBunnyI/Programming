@@ -34,4 +34,30 @@ public class AesEncryption
         using StreamReader srDecrypt = new StreamReader(csDecrypt);
         return srDecrypt.ReadToEnd();
     }
+
+    public static byte[] GetEncryptKey(string keyPath)
+    {
+        using var stream = File.Open(keyPath, FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.None);
+        using var byteStream = new StreamReader(stream);
+        string stringKey = byteStream.ReadToEnd();
+        byte[] key = new byte[stringKey.Length];
+
+        if (stringKey.Length > 0)
+        {
+            for (int i = 0; i < key.Length; i++)
+                key[i] = (byte)stringKey[i];
+            return key;
+        }
+        else
+        {
+            using Aes aesAlg = Aes.Create();
+            key = aesAlg.Key;
+            stringKey = "";
+            for (int i = 0; i < key.Length; i++)
+                stringKey += (char)key[i];
+            using var writer = new StreamWriter(stream);
+            writer.Write(stringKey);
+            return key;
+        }
+    }
 }

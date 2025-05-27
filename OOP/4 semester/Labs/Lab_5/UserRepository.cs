@@ -3,7 +3,7 @@ using System.Text.Json;
 
 namespace Lab_5;
 
-public class UserRepository : DataRepository<User>
+public class UserRepository : DataRepository<User>, IUserRepository
 {
     private record class UserSave
     {
@@ -27,7 +27,7 @@ public class UserRepository : DataRepository<User>
 
     protected override void SaveToFile(List<User> items)
     {
-        var key = GetEncryptKey();
+        var key = AesEncryption.GetEncryptKey(keyPath);
 
         List<UserSave> userSaves = new List<UserSave>(items.Count);
         foreach (var item in items)
@@ -48,7 +48,7 @@ public class UserRepository : DataRepository<User>
         using var stream = File.Open(filePath, FileMode.Open, FileAccess.Read, FileShare.Read);
         List<UserSave> result = JsonSerializer.Deserialize<List<UserSave>>(stream, options) ?? [];
 
-        var key = GetEncryptKey();
+        var key = AesEncryption.GetEncryptKey(keyPath);
 
         List<User> users = new List<User>(result.Count);
 
@@ -64,29 +64,14 @@ public class UserRepository : DataRepository<User>
         return users;
     }
 
-    private byte[] GetEncryptKey()
+    public User? GetByLogin(string login)
     {
-        using var stream = File.Open(keyPath, FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.None);
-        using var byteStream = new StreamReader(stream);
-        string stringKey = byteStream.ReadToEnd();
-        byte[] key = new byte[stringKey.Length];
+        var users = ReadFromFile();
 
-        if (stringKey.Length > 0)
-        {
-            for (int i = 0; i < key.Length; i++)
-                key[i] = (byte)stringKey[i];
-            return key;
-        }
-        else
-        {
-            using Aes aesAlg = Aes.Create();
-            key = aesAlg.Key;
-            stringKey = "";
-            for (int i = 0; i < key.Length; i++)
-                stringKey += (char)key[i];
-            using var writer = new StreamWriter(stream);
-            writer.Write(stringKey);
-            return key;
-        }
+        foreach (var user in users)
+            if (user.Login == login)
+                return user;
+
+        return null;
     }
 }

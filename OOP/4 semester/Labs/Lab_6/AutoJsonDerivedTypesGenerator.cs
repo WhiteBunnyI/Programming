@@ -31,7 +31,7 @@ public static class JsonExtensions
                     if (typeInfo.Type == baseType)
                     {
                         typeInfo.PolymorphismOptions ??= new JsonPolymorphismOptions();
-                        typeInfo.PolymorphismOptions.TypeDiscriminatorPropertyName = attribute.TypeDiscriminatorProperty;
+                        typeInfo.PolymorphismOptions.TypeDiscriminatorPropertyName = attribute?.TypeDiscriminatorProperty;
 
                         foreach (var derivedType in derivedTypes)
                         {

@@ -1,28 +1,38 @@
 ﻿namespace Lab_7;
 
-public class DIContainer
+public class DIContainer : IDisposable
 {
     public interface IBox
     {
         public object GetObject { get; }
     }
 
-    public class BoxScope : IDisposable, IBox
+    public class BoxScope : IBox
     {
         static BoxScope currentScope;
         BoxScope prevScope;
         object scopeObject;
 
-        public BoxScope(Func<object> obj)
+        Func<object> fabric;
+        public BoxScope(Func<object> fabric)
         {
-            scopeObject = obj();
+            this.fabric = fabric;
+            scopeObject = fabric();
             prevScope = currentScope;
             currentScope = this;
         }
-        public void Dispose()
+
+        public BoxScope CreateScope()
+        {
+            return new BoxScope(fabric);
+        }
+
+        public BoxScope Dispose()
         {
             currentScope = prevScope;
+            return currentScope;
         }
+
         public object GetObject => currentScope.scopeObject;
     }
 
@@ -43,11 +53,11 @@ public class DIContainer
         {
             this.fabric = fabric;
         }
-        public object GetObject => fabric.Invoke();
+        public object GetObject => fabric();
     }
 
 
-    Dictionary<Type, IBox> registrations = new Dictionary<Type, IBox>();
+    Dictionary<Type, IBox> registrations = [];
 
     public IBox GetInstanceBox<I>()
     {
@@ -136,5 +146,22 @@ public class DIContainer
     private void RegisterSingleton<I, C>(Func<C> fabric) where C : class, I
     {
         registrations[typeof(I)] = new BoxSingleton(fabric);
+    }
+
+    public DIContainer CreateScope()
+    {
+        foreach (var i in registrations)
+            if (i.Value is BoxScope scope)
+                registrations[i.Key] = scope.CreateScope();
+
+
+        return this;
+    }
+
+    public void Dispose()
+    {
+        foreach (var i in registrations)
+            if (i.Value is BoxScope scope)
+                registrations[i.Key] = scope.Dispose();
     }
 }

@@ -17,9 +17,7 @@ User changedUser = users[2] with { Address = "IvanAddress, 10" };
 repository.Update(changedUser);
 
 foreach(User user in repository.GetAll())
-{
     Console.WriteLine(user);
-}
 
 
 Console.WriteLine("\nTest auth service: \n");
@@ -35,15 +33,22 @@ if (auth.IsAuthorized)
     Console.WriteLine($"Is auth? {auth.IsAuthorized}");
 }
 
-User signInUser = users[0];
-Console.WriteLine($"Trying to sign in as {signInUser.Login}...");
-auth.SignIn(signInUser);
-Console.WriteLine($"Authorized user: {auth.User}");
+User? signInUser = repository.GetByLogin("Ivan");
+if(signInUser != null)
+{
+    Console.WriteLine($"Trying to sign in as {signInUser.Login}...");
+    auth.SignIn(signInUser);
+    Console.WriteLine($"Authorized user: {auth.User}");
+}
 
-signInUser = users[2];
-Console.WriteLine($"Trying to sign in as {signInUser.Login}...");
-auth.SignIn(signInUser);
-Console.WriteLine($"Authorized user: {auth.User}");
+signInUser = repository.GetById(0);
+if(signInUser != null)
+{
+    Console.WriteLine($"Trying to sign in as {signInUser.Login}...");
+    auth.SignIn(signInUser);
+    Console.WriteLine($"Authorized user: {auth.User}");
+}
+
 
 
 
