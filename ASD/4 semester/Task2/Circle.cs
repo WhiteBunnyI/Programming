@@ -36,6 +36,18 @@ namespace Task3
             return result;
         }
 
+        public override float F(float x)
+        {
+            float _x = (x - startPoint.x);
+            return startPoint.y + (float)Math.Sqrt(radius * radius - _x * _x);
+        }
+
+        public float F1(float x)
+        {
+            float _x = (x - startPoint.x);
+            return startPoint.y - (float)Math.Sqrt(radius * radius - _x * _x);
+        }
+
         public override void Render(Form1 form)
         {
             form.g.DrawEllipse(form.pen, startPoint.x - radius, startPoint.y - radius, radius * 2, radius * 2);
@@ -49,7 +61,7 @@ namespace Task3
         }
 
         protected bool isDraggingRad = false;
-        public override void OnLeftClickDown(Form1 form, MouseEventArgs e)
+        public override bool OnLeftClickDown(Form1 form, MouseEventArgs e)
         {
             base.OnLeftClickDown(form, e);
             float x = e.X - startPoint.x;
@@ -59,6 +71,8 @@ namespace Task3
             {
                 isDraggingRad = true;
             }
+
+            return isDraggingRad || isDragging;
         }
 
         public override void OnLeftClickDrag(Form1 form, MouseEventArgs e)

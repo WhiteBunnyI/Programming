@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Task3
 {
@@ -13,6 +14,12 @@ namespace Task3
         public Vector2(float x, float y)
         {
             this.x = x; this.y = y;
+        }
+
+        public Vector2(Dot a, Dot b)
+        {
+            x = b.startPoint.x - a.startPoint.x;
+            y = b.startPoint.y - a.startPoint.y;
         }
 
         public static bool operator ==(Vector2 a, Vector2 b)
@@ -28,6 +35,27 @@ namespace Task3
             a.x = -a.x;
             a.y = -a.y;
             return a;
+        }
+
+        public Dot GetDot()
+        {
+            return new Dot(x, y);
+        }
+
+        public float DotProduct(Vector2 other)
+        {
+            return x * other.x + y * other.y;
+        }
+
+        public Vector2 GetNormal()
+        {
+            return new Vector2(-y, x);
+        }
+
+        public Vector2 GetNormalized()
+        {
+            float len = (float)Math.Sqrt(x * x + y * y);
+            return new Vector2(x / len, y / len);
         }
 
         public override bool Equals(object obj)

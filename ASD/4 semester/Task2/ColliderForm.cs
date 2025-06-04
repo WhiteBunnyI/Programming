@@ -19,6 +19,72 @@ namespace Task3
             Application.Run(new Form1());
         }
 
+        //Алгоритм Джарвиса
+        public static Stack<Dot> Calculate(List<Dot> points)
+        {
+            if (points.Count < 3) return null;
+
+            Stack<Dot> result = new Stack<Dot>(points.Count);
+
+            Dot start = points[0];
+
+            //Ищем крайнюю точку, которая гарантировано входит в выпуклую оболочку
+            foreach (Dot p in points)
+            {
+                if (start.startPoint.y <= p.startPoint.y)
+                    start = p;
+            }
+
+            result.Push(start);
+
+            Dot current = start;
+            Dot next = null;
+            double cos = -1;
+            for (int i = 0; i < points.Count; i++)
+            {
+                if (current == points[i]) continue;
+
+                float x = points[i].startPoint.x - current.startPoint.x;
+                float y = points[i].startPoint.y - current.startPoint.y;
+                double tempCos = x / Math.Sqrt(x * x + y * y);
+                if (tempCos > cos)
+                {
+                    next = points[i];
+                    cos = tempCos;
+                }
+            }
+            current = next;
+
+            while (current != start)
+            {
+                cos = -1;
+                float x1 = current.startPoint.x - result.Peek().startPoint.x;
+                float y1 = current.startPoint.y - result.Peek().startPoint.y;
+
+                for (int i = 0; i < points.Count; i++)
+                {
+                    if (current == points[i]) continue;
+
+                    float x2 = points[i].startPoint.x - current.startPoint.x;
+                    float y2 = points[i].startPoint.y - current.startPoint.y;
+                    double tempCos = (x1 * x2 + y1 * y2) / (Math.Sqrt(x1 * x1 + y1 * y1) * Math.Sqrt(x2 * x2 + y2 * y2));
+
+                    if (tempCos > cos)
+                    {
+                        next = points[i];
+                        cos = tempCos;
+                    }
+                }
+                result.Push(current);
+
+                if (result.Count > points.Count) return null;
+
+                current = next;
+            }
+
+            return result;
+        }
+
         public static void CheckCollide(Straight straight1, Straight straight2, ref List<Dot> result)
         {
             float c1 = straight1.startPoint.x * straight1.vector.y - straight1.startPoint.y * straight1.vector.x;
@@ -65,12 +131,18 @@ namespace Task3
             Dot dot1 = new Dot(0,0);
             dot1.startPoint.x = straight.startPoint.x + t1 * straight.vector.x;
             dot1.startPoint.y = straight.startPoint.y + t1 * straight.vector.y;
-            result.Add(dot1);
+
+            if(circle.F(dot1.startPoint.x) == dot1.startPoint.y ||
+                circle.F1(dot1.startPoint.x) == dot1.startPoint.y)
+                result.Add(dot1);
 
             Dot dot2 = new Dot(0, 0);
             dot2.startPoint.x = straight.startPoint.x + t2 * straight.vector.x;
             dot2.startPoint.y = straight.startPoint.y + t2 * straight.vector.y;
-            result.Add(dot2);
+
+            if (circle.F(dot2.startPoint.x) == dot2.startPoint.y ||
+                circle.F1(dot2.startPoint.x) == dot2.startPoint.y)
+                result.Add(dot2);
         }
 
         public static void CheckCollide(Straight straight, Segment segment, ref List<Dot> result)

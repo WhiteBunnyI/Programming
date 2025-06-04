@@ -34,10 +34,12 @@
             this.pointsText = new System.Windows.Forms.TextBox();
             this.calculate = new System.Windows.Forms.Button();
             this.panel = new System.Windows.Forms.FlowLayoutPanel();
+            this.mouseText = new System.Windows.Forms.TextBox();
             this.windowResTextBox = new System.Windows.Forms.TextBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.result = new System.Windows.Forms.TextBox();
             this.type = new System.Windows.Forms.ComboBox();
             this.menuStrip = new System.Windows.Forms.MenuStrip();
-            this.mouseText = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.points)).BeginInit();
             this.panel.SuspendLayout();
@@ -69,7 +71,7 @@
             resources.ApplyResources(this.calculate, "calculate");
             this.calculate.Name = "calculate";
             this.calculate.UseVisualStyleBackColor = true;
-            this.calculate.Click += new System.EventHandler(this.calculate_Click);
+            this.calculate.Click += new System.EventHandler(this.check_Clicked);
             // 
             // panel
             // 
@@ -78,16 +80,36 @@
             this.panel.Controls.Add(this.mouseText);
             this.panel.Controls.Add(this.windowResTextBox);
             this.panel.Controls.Add(this.calculate);
+            this.panel.Controls.Add(this.button1);
+            this.panel.Controls.Add(this.result);
             this.panel.Controls.Add(this.pointsText);
             this.panel.Controls.Add(this.points);
             this.panel.Controls.Add(this.type);
             this.panel.Name = "panel";
+            // 
+            // mouseText
+            // 
+            resources.ApplyResources(this.mouseText, "mouseText");
+            this.mouseText.Name = "mouseText";
+            this.mouseText.ReadOnly = true;
             // 
             // windowResTextBox
             // 
             resources.ApplyResources(this.windowResTextBox, "windowResTextBox");
             this.windowResTextBox.Name = "windowResTextBox";
             this.windowResTextBox.ReadOnly = true;
+            // 
+            // button1
+            // 
+            resources.ApplyResources(this.button1, "button1");
+            this.button1.Name = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.calculate_Clicked);
+            // 
+            // result
+            // 
+            resources.ApplyResources(this.result, "result");
+            this.result.Name = "result";
             // 
             // type
             // 
@@ -105,12 +127,6 @@
             // 
             resources.ApplyResources(this.menuStrip, "menuStrip");
             this.menuStrip.Name = "menuStrip";
-            // 
-            // mouseText
-            // 
-            resources.ApplyResources(this.mouseText, "mouseText");
-            this.mouseText.Name = "mouseText";
-            this.mouseText.ReadOnly = true;
             // 
             // Form1
             // 
@@ -143,6 +159,8 @@
         private System.Windows.Forms.MenuStrip menuStrip;
         private System.Windows.Forms.ComboBox type;
         private System.Windows.Forms.TextBox mouseText;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.TextBox result;
     }
 }
 

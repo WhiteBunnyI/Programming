@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Windows.Forms;
 
 namespace Task3
@@ -11,6 +12,11 @@ namespace Task3
         public Segment(float x1, float y1, float x2, float y2) : base(x1, y1)
         {
             endPoint = new Vector2 (x2, y2);
+        }
+
+        public Segment(Dot a, Dot b) : this(a.startPoint.x, a.startPoint.y, b.startPoint.x, b.startPoint.y)
+        {
+
         }
 
         public override float F(float x)
@@ -45,7 +51,7 @@ namespace Task3
         }
 
         bool isDraggingOther = false;
-        public override void OnLeftClickDown(Form1 form, MouseEventArgs e)
+        public override bool OnLeftClickDown(Form1 form, MouseEventArgs e)
         {
             base.OnLeftClickDown(form, e);
             float x = endPoint.x - e.X;
@@ -54,8 +60,9 @@ namespace Task3
             if (dist <= form.pen.Width * 2f)
             {
                 isDraggingOther = true;
-                return;
             }
+
+            return isDraggingOther || isDragging;
         }
 
         public override void OnLeftClickDrag(Form1 form, MouseEventArgs e)

@@ -79,7 +79,7 @@ namespace Task3
             e.Handled = true;
         }
 
-        private void calculate_Click(object sender, EventArgs e)
+        private void check_Clicked(object sender, EventArgs e)
         {
             Render(false);
             Color prev = pen.Color;
@@ -88,7 +88,10 @@ namespace Task3
             {
                 for(int o = i + 1; o < figures.Count; o++)
                 {
-                    var collide = figures[i].CheckCollide(figures[o]);
+                    if (figures[o] == null)
+                        continue;
+
+                    var collide = figures[i]?.CheckCollide(figures[o]);
                     foreach(var dot in collide)
                     {
                         dot.Render(this);
@@ -127,9 +130,23 @@ namespace Task3
 
         private void pictureBox1_MouseDown(object sender, MouseEventArgs e)
         {
-            foreach(Dot figure in figures)
+            bool isClickedOnFigure = false;
+
+            if (e.Button == MouseButtons.Left)
             {
-                figure?.OnLeftClickDown(this, e);
+                foreach (Dot figure in figures)
+                {
+                    if (figure == null)
+                        continue;
+
+                    isClickedOnFigure = figure.OnLeftClickDown(this, e) || isClickedOnFigure;
+                }
+
+                if (!isClickedOnFigure)
+                {
+                    Dot dot = new Dot(e.X, e.Y);
+                    figures.Add(dot);
+                }
             }
         }
 
@@ -145,9 +162,12 @@ namespace Task3
 
         private void pictureBox1_MouseUp(object sender, MouseEventArgs e)
         {
-            foreach(Dot figure in figures)
+            if (e.Button == MouseButtons.Left)
             {
-                figure?.OnLeftClickUp(this, e);
+                foreach (Dot figure in figures)
+                {
+                    figure?.OnLeftClickUp(this, e);
+                }
             }
         }
 
@@ -173,5 +193,128 @@ namespace Task3
             }
             Render();
         }
+
+        private void calculate_Clicked(object sender, EventArgs e)
+        {
+            List<Dot> dots = new List<Dot>();
+
+            foreach (Dot figure in figures)
+            {
+                if (figure.GetType() == typeof(Dot))
+                    dots.Add(figure);
+            }
+
+            figures.Clear();
+            figures = new List<Dot>(dots);
+
+            var fullOutline = ColliderForm.Calculate(dots)?.ToList();
+
+            //Точек внутри области меньше 2
+            if (fullOutline == null || dots.Count - fullOutline.Count < 3)
+            {
+                result.Text = "Нет вложенных треугольников";
+                return;
+            }
+
+            var inlineDots = new List<Dot>();
+            foreach (Dot dot in dots)
+            {
+                if(!fullOutline.Contains(dot))
+                    inlineDots.Add(dot);
+            }
+
+            //Перебираем тройки выпуклой оболочки и выбираем ту, внутри которой больше или равно 3 точки
+            for (int i = 0; i < fullOutline.Count - 2; i++)
+            {
+                for (int j = i + 1; j < fullOutline.Count - 1; j++)
+                {
+                    for (int k = j + 1; k < fullOutline.Count; k++)
+                    {
+                        List<Dot> outlineTriangle = new List<Dot>() { fullOutline[i], fullOutline[j], fullOutline[k] };
+
+                        var funcResult = IsHasInsideTriangle(outlineTriangle, inlineDots);
+                        if (funcResult.hasTriangle)
+                        {
+                            result.Text = "Есть вложенные треугольники";
+
+                            RenderTriangle(outlineTriangle);
+                            RenderTriangle(funcResult.insideDots);
+
+                            pen.Color = Color.Red;
+                            outlineTriangle[0].Render(this);
+                            pen.Color = Color.Black;
+                            return;
+                        }
+                    }
+                }
+            }
+
+            result.Text = "Нет вложенных треугольников";
+        }
+
+        private void RenderTriangle(List<Dot> triangle)
+        {
+            /*for (int i = 0; i < triangle.Count - 1; i++)
+            {
+                for (int j = i + 1; j < triangle.Count; j++)
+                {
+                    figures.Add(new Segment(triangle[i], triangle[j]));
+                }
+            }*/
+
+            figures.Add(new Segment(triangle[0], triangle[1]));
+            figures.Add(new Segment(triangle[1], triangle[2]));
+            figures.Add(new Segment(triangle[2], triangle[0]));
+            Render();
+        }
+        
+        private (bool hasTriangle, List<Dot> insideDots) IsHasInsideTriangle(List<Dot> outlineTriangle, List<Dot> inlineDots)
+        {
+            List<Dot> inside = new List<Dot>();
+
+            Vector2 normal_1 = new Vector2(outlineTriangle[0], outlineTriangle[1]).GetNormal();
+            Vector2 normal_2 = new Vector2(outlineTriangle[1], outlineTriangle[2]).GetNormal();
+            Vector2 normal_3 = new Vector2(outlineTriangle[2], outlineTriangle[0]).GetNormal();
+
+            Dot center_1 = (outlineTriangle[0] + outlineTriangle[1]) / 2;
+            Dot center_2 = (outlineTriangle[1] + outlineTriangle[2]) / 2;
+            Dot center_3 = (outlineTriangle[2] + outlineTriangle[0]) / 2;
+
+            foreach (Dot dot in inlineDots)
+            {
+                float dot_1 = normal_1.DotProduct(new Vector2(center_1, dot));
+                float dot_2 = normal_2.DotProduct(new Vector2(center_2, dot));
+                float dot_3 = normal_3.DotProduct(new Vector2(center_3, dot));
+
+                if (dot_1 > 0f && dot_3 > 0f && dot_2 > 0f)
+                {
+                    inside.Add(dot);
+                }
+            }
+
+            if (inside.Count < 3)
+                return (false, inlineDots);
+
+            //Проверка лежат ли точки на одной прямой
+            Straight straight = new Straight(inside[0], new Vector2(inside[0], inside[1]));
+            for (int i = 2; i < inside.Count; i++)
+            {
+                Dot dot = inside[i];
+                Circle circle = new Circle(dot.startPoint.x, dot.startPoint.y, 15f);
+                var collisions = straight.CheckCollide(circle);
+                if (collisions.Count == 0)
+                {
+                    List<Dot> result = new List<Dot>() { inside[0], inside[1], dot };
+                    foreach (var d in inlineDots)
+                        if (!result.Contains(d))
+                            result.Add(d);
+                    return (true, result);
+                }
+            }
+
+
+            return (false, inlineDots);
+        }
+
     }
 }

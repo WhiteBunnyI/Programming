@@ -21,6 +21,11 @@ namespace Task3
             
         }
 
+        public Straight(Dot center, Vector2 vector) : base(center.startPoint.x, center.startPoint.y)
+        {
+            this.vector = new Vector2(vector.x, vector.y);
+        }
+
         public void SetVector(float x, float y)
         {
             float vecLen = (float)Math.Sqrt(x * x + y * y);
@@ -97,10 +102,10 @@ namespace Task3
         }
 
         protected bool isDraggingVec = false;
-        public override void OnLeftClickDown(Form1 form, MouseEventArgs e)
+        public override bool OnLeftClickDown(Form1 form, MouseEventArgs e)
         {
             base.OnLeftClickDown(form, e);
-            if (isDragging) return;
+            if (isDragging) return true;
 
             if(Math.Abs(vector.x) > Math.Abs(vector.y))
             {
@@ -120,7 +125,8 @@ namespace Task3
                     isDraggingVec = e.X - form.pen.Width * 2 < x;
                 }
             }
-            
+
+            return isDraggingVec || isDragging;
         }
 
         public override void OnLeftClickDrag(Form1 form, MouseEventArgs e)

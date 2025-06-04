@@ -32,8 +32,18 @@ namespace Task3
             form.g.DrawEllipse(form.pen, startPoint.x - form.pen.Width / 2, startPoint.y - form.pen.Width / 2, form.pen.Width, form.pen.Width);
         }
 
+        public static Dot operator +(Dot a, Dot b)
+        {
+            return new Dot(a.startPoint.x + b.startPoint.x, a.startPoint.y + b.startPoint.y);
+        }
+
+        public static Dot operator /(Dot dot, float num)
+        {
+            return new Dot(dot.startPoint.x / num, dot.startPoint.y / num);
+        }
+
         protected bool isDragging = false;
-        public virtual void OnLeftClickDown(Form1 form, MouseEventArgs e)
+        public virtual bool OnLeftClickDown(Form1 form, MouseEventArgs e)
         {
             float x = startPoint.x - e.X;
             float y = startPoint.y - e.Y;
@@ -41,9 +51,9 @@ namespace Task3
             if (dist <= form.pen.Width * 2f)
             {
                 isDragging = true;
-                return;
             }
 
+            return isDragging;
         }
 
         public virtual void OnLeftClickDrag(Form1 form, MouseEventArgs e)
