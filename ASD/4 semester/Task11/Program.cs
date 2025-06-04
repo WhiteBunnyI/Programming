@@ -35,11 +35,88 @@ namespace Task3
 
         public static void Coloring(Graphics graphics, Pen pen, List<Dot> dots, List<Pair> links)
         {
-            
-            foreach (var pair in links)
+            //Key - dot index, Value - dot color
+            Dictionary<int, int> dotsColor = new Dictionary<int, int>();
+            List<int> checkedDots = new List<int>();
+
+            int index = 0;
+            while (checkedDots.Count != dots.Count)
             {
-                Console.WriteLine("f: " + pair.Key + " s: " + pair.Value);
+                List<int> occupiedColors = new List<int>();
+
+                var neighbords = GetNeighbords(index, links);
+                foreach (var link in neighbords.links)
+                {
+                    int otherDot = link.Key == index ? link.Value : link.Key;
+                    if (dotsColor.TryGetValue(otherDot, out int otherColor))
+                        occupiedColors.Add(otherColor);
+                }
+
+                int color = 0;
+                for (; color < colors.Count; color++)
+                {
+                    if (!occupiedColors.Contains(color))
+                        break;
+                }
+
+                //Нет подходящего цвета
+                if (color == colors.Count)
+                    throw new Exception();
+
+                dotsColor.Add(index, color);
+                checkedDots.Add(index);
+
+                bool isFound = false;
+                //Берем соседнюю точку
+                foreach (var dotIndex in neighbords.dots)
+                {
+                    if (!checkedDots.Contains(dotIndex))
+                    {
+                        index = dotIndex;
+                        isFound = true;
+                        break;
+                    }
+                }
+
+                if (isFound) continue;
+
+                //В случае, если соседних нет, ищем любую другую
+                for (int i = 0; i < dots.Count; i++)
+                {
+                    if (!checkedDots.Contains(i))
+                    {
+                        index = i;
+                        break;
+                    }
+                }
+
             }
+
+            Color c = pen.Color;
+            for (int i = 0; i < dotsColor.Count; i++)
+            {
+                pen.Color = colors[dotsColor[i]];
+                graphics.DrawEllipse(pen, dots[i].position.x - pen.Width / 2, dots[i].position.y - pen.Width / 2, pen.Width, pen.Width);
+            }
+            pen.Color = c;
+        }
+
+        private static (List<Pair> links, List<int> dots) GetNeighbords(int index, List<Pair> links)
+        {
+            List<Pair> resultLinks = new List<Pair>();
+            List<int> resultDots = new List<int>();
+
+            foreach (var link in links)
+            {
+                if (link.Key == index || link.Value == index)
+                {
+                    int otherDot = link.Key == index ? link.Value : link.Key;
+                    resultLinks.Add(link);
+                    resultDots.Add(otherDot);
+                }
+            }
+
+            return (resultLinks, resultDots);
         }
 
 /*        public static void Coloring(Graphics graphics, Pen pen, List<Dot> dots, List<Pair> links)
