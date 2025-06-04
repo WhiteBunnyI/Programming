@@ -19,20 +19,16 @@ public class ConsoleLogger : ILogger
 
 public class FileLogger : ILogger
 {
-    StreamWriter writer;
+    string filePath;
     public FileLogger(string filePath)
     {
-        var stream = File.Open(filePath, FileMode.Create, FileAccess.Write, FileShare.Read);
-        writer = new StreamWriter(stream);
+        this.filePath = filePath;
+        
     }
-
-    ~FileLogger()
-    {
-        writer.Dispose();
-    }
-
     public void Log(string message)
     {
+        var stream = File.Open(filePath, FileMode.Create, FileAccess.Write, FileShare.Read);
+        var writer = new StreamWriter(stream);
         writer.Write(message+'\n');
         writer.Flush();
     }

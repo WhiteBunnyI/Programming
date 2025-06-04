@@ -60,12 +60,17 @@ public class ConsolePrint : IDisposable
         m_symbol = m_prevSymbol;
     }
 
-    public static void Print(string text, int pos_x = -1, int pos_y = -1)
+    public void Print(string text, int pos_x = -1, int pos_y = -1)
+    {
+        print(text, pos_x, pos_y);
+    }
+
+    public static void print(string text, int pos_x = -1, int pos_y = -1)
     {
         if (text.Length == 0) return;
 
         text = text.ToUpper();
-        bool isNeedTransfer = text[text.Length - 1] == '\n' || true;
+        bool isNeedTransfer = text[^1] == '\n' || true;
 
         if (pos_x != -1)
             Console.CursorLeft = pos_x;
@@ -82,9 +87,8 @@ public class ConsolePrint : IDisposable
             return;
         }
 
-        FileStream stream = File.OpenRead(SIZE_FILE_PATH[m_size]) ?? throw new DirectoryNotFoundException();
+        using FileStream stream = File.OpenRead(SIZE_FILE_PATH[m_size]);
 
-        int x = Console.CursorLeft;
         int y = Console.CursorTop;
         int size = (int)m_size;
 
@@ -100,8 +104,6 @@ public class ConsolePrint : IDisposable
         }
 
         Console.Write(COLOR_ANSI_COMMANDS[Color.Default]);
-
-        stream.Dispose();
     }
 
     private static void PrintChar(FileStream stream, char chr, int size)

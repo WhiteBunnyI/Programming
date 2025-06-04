@@ -162,6 +162,86 @@
       {
         "key": "d",
         "modifiers": 0
+      },
+      {
+        "key": "f",
+        "modifiers": 0
+      },
+      {
+        "key": "h",
+        "modifiers": 0
+      },
+      {
+        "key": "f",
+        "modifiers": 0
+      },
+      {
+        "key": "j",
+        "modifiers": 0
+      },
+      {
+        "key": "g",
+        "modifiers": 0
+      },
+      {
+        "key": "=",
+        "modifiers": 1
+      },
+      {
+        "key": "=",
+        "modifiers": 1
+      },
+      {
+        "key": "=",
+        "modifiers": 1
+      },
+      {
+        "key": "g",
+        "modifiers": 0
+      },
+      {
+        "key": "d",
+        "modifiers": 0
+      },
+      {
+        "key": "=",
+        "modifiers": 1
+      },
+      {
+        "key": "=",
+        "modifiers": 1
+      },
+      {
+        "key": "=",
+        "modifiers": 1
+      },
+      {
+        "key": "=",
+        "modifiers": 1
+      },
+      {
+        "key": "h",
+        "modifiers": 0
+      },
+      {
+        "key": "g",
+        "modifiers": 0
+      },
+      {
+        "key": "h",
+        "modifiers": 0
+      },
+      {
+        "key": "g",
+        "modifiers": 0
+      },
+      {
+        "key": "g",
+        "modifiers": 0
+      },
+      {
+        "key": "g",
+        "modifiers": 0
       }
     ]
   },

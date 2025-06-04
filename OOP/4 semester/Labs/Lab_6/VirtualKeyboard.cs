@@ -2,6 +2,8 @@
 
 public partial class VirtualKeyboard
 {
+    public static string logPath = "../../../Log.txt";
+
     static List<Key> _globalHistory;
 
     static List<Key> _buffer;
@@ -22,7 +24,7 @@ public partial class VirtualKeyboard
         _globalHistory = [];
         _buffer = [];
         _handlers = [];
-        var stream = File.Open("../../../Log.txt", FileMode.Create, FileAccess.ReadWrite, FileShare.Read);
+        var stream = File.Open(logPath, FileMode.Create, FileAccess.ReadWrite, FileShare.Read);
         _writer = new StreamWriter(stream);
     }
 
@@ -44,7 +46,7 @@ public partial class VirtualKeyboard
 
     private static void Proceed(Key key, bool writeInHistory)
     {
-        if(writeInHistory)
+        if (writeInHistory)
             _globalHistory.Add(key);
 
         if (key.key != null && _specialKeys.TryGetValue((ConsoleKey)key.key, out var action))
@@ -76,13 +78,13 @@ public partial class VirtualKeyboard
 
         foreach (var _key in _keys)
         {
-            if(_handlers.TryGetValue(_key, out var found))
+            if (_handlers.TryGetValue(_key, out var found))
                 handlers.AddRange(found);
         }
 
         return handlers;
     }
-    
+
     public static void Undo()
     {
         if (_bufferIndex == 0) return;
@@ -92,13 +94,13 @@ public partial class VirtualKeyboard
         Key key = _buffer[_bufferIndex];
 
         var handlers = GetHandler(key);
-        foreach(var handler in handlers)
+        foreach (var handler in handlers)
             handler.Undo(key);
     }
 
     public static void Redo()
     {
-        if(_bufferIndex == _buffer.Count) return;
+        if (_bufferIndex == _buffer.Count) return;
         LogToConsole("Redo");
 
         Key key = _buffer[_bufferIndex];
@@ -114,9 +116,7 @@ public partial class VirtualKeyboard
         _handlers.TryAdd(key, []);
 
         foreach (var h in _handlers[key])
-        {
             if (handler.GetType() == h.GetType()) return;   //Избегаем дублирования
-        }
 
         _handlers[key].Add(handler);
     }
